@@ -1,0 +1,1 @@
+export { MatrixCode } from './MatrixCode';
