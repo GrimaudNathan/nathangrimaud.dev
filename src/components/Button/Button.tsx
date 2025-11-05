@@ -85,8 +85,6 @@ export const Button = ({
       disabled={disabled}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      whileHover={!disabled ? { scale: 1.02 } : {}}
-      whileTap={!disabled ? { scale: 0.98 } : {}}
       className={`${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${className}`}
     >
       <GlitchText ref={glitchTextRef} glitchOptions={{ disabled }} animationDuration={0.3}>

@@ -7,7 +7,7 @@ export const DesignSystem = () => {
     <div className="bg-terminal-bg-primary mt-8 min-h-screen p-12">
       <div className="mx-auto max-w-4xl space-y-8">
         <div className="space-y-4">
-          <h1 className="text-terminal-text-primary text-glow text-4xl font-bold">DESIGN SYSTEM</h1>
+          <h1 className="text-terminal-text-primary text-4xl font-bold font-mono">DESIGN SYSTEM</h1>
         </div>
 
         <div className="border-terminal-border-primary space-y-6 rounded border-2 p-8">
@@ -74,10 +74,10 @@ export const DesignSystem = () => {
             <div className="space-y-4">
               <h2 className="text-terminal-text-muted text-xl">Auto Trigger</h2>
               <div className="flex flex-wrap items-center gap-4">
-                <GlitchText autoTrigger triggerDelay={0}>
+                <GlitchText autoTrigger triggerDelay={0} glitchOptions={{ duration: 600 }}>
                   Auto Trigger
                 </GlitchText>
-                <GlitchText autoTrigger triggerDelay={500} glitchOptions={{ duration: 600 }}>
+                <GlitchText autoTrigger triggerDelay={600} glitchOptions={{ duration: 600 }}>
                   Delayed Trigger
                 </GlitchText>
               </div>

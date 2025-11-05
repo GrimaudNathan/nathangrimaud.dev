@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { CursorIcon } from '../../assets/CursorIcon';
-import { CursorPointerIcon } from '../../assets/CursorPointerIcon';
 
 export const Cursor = () => {
   const [isPointer, setIsPointer] = useState(false);
