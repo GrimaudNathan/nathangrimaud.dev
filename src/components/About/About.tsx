@@ -1,29 +1,6 @@
-import { motion, useScroll, useTransform, MotionValue } from 'motion/react';
+import { useScroll } from 'motion/react';
 import { useRef, Fragment } from 'react';
-import type { ReactNode } from 'react';
-
-interface AnimatedLineProps {
-  children: ReactNode;
-  index: number;
-  totalLines: number;
-  scrollProgress: MotionValue<number>;
-}
-
-const AnimatedLine = ({ children, index, totalLines, scrollProgress }: AnimatedLineProps) => {
-  const animationRange = 0.8;
-  const startProgress = (index / totalLines) * animationRange;
-  const endProgress = ((index + 1) / totalLines) * animationRange;
-
-  const y = useTransform(scrollProgress, [startProgress, endProgress], ['100%', '0%']);
-
-  return (
-    <div className="overflow-hidden">
-      <motion.div className="font-mono text-3xl font-bold md:text-5xl" style={{ y }}>
-        {children}
-      </motion.div>
-    </div>
-  );
-};
+import { AnimatedLine } from './AnimatedLine';
 
 export const About = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -67,7 +44,7 @@ export const About = () => {
 
   return (
     <section ref={containerRef} className="relative h-[500vh]">
-      <div className="sticky top-0 flex min-h-screen w-full items-center justify-center bg-white text-black">
+      <div className="sticky top-0 flex min-h-screen items-center justify-center bg-terminal-bg-white text-black rounded-t-4xl">
         <div className="mx-auto max-w-4xl px-6 py-20">
           <div className="space-y-2">
             {lines.map((line, index) => (

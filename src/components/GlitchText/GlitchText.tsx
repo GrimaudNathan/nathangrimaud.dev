@@ -84,7 +84,7 @@ export const GlitchText = ({
             {glitchText}
           </motion.span>
           <motion.span
-            className="text-glitch-cyan pointer-events-none absolute inset-0 z-0 flex items-center justify-center"
+            className="text-glitch-blue pointer-events-none absolute inset-0 z-0 flex items-center justify-center"
             style={{
               textShadow: '-2px 0 var(--color-glitch-blue), 2px 0 var(--color-glitch-red)',
             }}
