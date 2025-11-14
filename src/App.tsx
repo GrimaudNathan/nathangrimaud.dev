@@ -1,5 +1,4 @@
 import { useState, useEffect, useTransition } from 'react';
-import { Cursor } from './components/Cursor';
 import { Menu } from './components/Menu';
 import { Router } from './router/Router';
 
@@ -20,7 +19,6 @@ function App() {
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const navigate = (url: string) => {
     const route = url as Route;
     startTransition(() => {
@@ -31,7 +29,6 @@ function App() {
 
   return (
     <>
-      <Cursor />
       <Menu />
       <div className={isPending ? 'opacity-50 transition-opacity duration-200' : ''}>
         <Router page={page} />
