@@ -28,6 +28,7 @@
   body {
     @apply bg-terminal-bg-primary text-terminal-text-primary font-mono antialiased;
     font-family: 'Courier New', 'Monaco', 'Menlo', monospace;
+    font-display: swap;
   }
 
   body::-webkit-scrollbar {

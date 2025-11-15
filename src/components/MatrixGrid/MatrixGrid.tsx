@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 interface MatrixGridProps {
   className?: string;
@@ -8,6 +8,25 @@ export const MatrixGrid = ({ className = '' }: MatrixGridProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationFrameRef = useRef<number | undefined>(undefined);
   const mousePosRef = useRef<{ x: number; y: number } | null>(null);
+  const [isVisible, setIsVisible] = useState(true);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const lastFrameTimeRef = useRef(0);
+
+  useEffect(() => {
+    // Détection prefers-reduced-motion
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setPrefersReducedMotion(mediaQuery.matches);
+    
+    const handleChange = (e: MediaQueryListEvent) => {
+      setPrefersReducedMotion(e.matches);
+    };
+    
+    mediaQuery.addEventListener('change', handleChange);
+    
+    return () => {
+      mediaQuery.removeEventListener('change', handleChange);
+    };
+  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -15,6 +34,18 @@ export const MatrixGrid = ({ className = '' }: MatrixGridProps) => {
 
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
+    
+    // IntersectionObserver pour pause/play
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setIsVisible(entry.isIntersecting);
+        });
+      },
+      { threshold: 0.1 }
+    );
+    
+    observer.observe(canvas);
 
     const gridSize = 50;
     const waveSpeed = 0.02;
@@ -63,7 +94,23 @@ export const MatrixGrid = ({ className = '' }: MatrixGridProps) => {
     resizeObserver.observe(canvas);
     window.addEventListener('resize', handleResize);
 
-    const animate = () => {
+    const animate = (timestamp: number) => {
+      if (!isVisible || prefersReducedMotion) {
+        animationFrameRef.current = requestAnimationFrame(animate);
+        return;
+      }
+      
+      const isMobile = window.innerWidth < 768;
+      const targetFPS = isMobile ? 30 : 60;
+      const frameInterval = 1000 / targetFPS;
+      
+      if (timestamp - lastFrameTimeRef.current < frameInterval) {
+        animationFrameRef.current = requestAnimationFrame(animate);
+        return;
+      }
+      
+      lastFrameTimeRef.current = timestamp;
+      
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       ctx.strokeStyle = '#00ff00';
@@ -167,7 +214,7 @@ export const MatrixGrid = ({ className = '' }: MatrixGridProps) => {
       animationFrameRef.current = requestAnimationFrame(animate);
     };
 
-    animate();
+    animationFrameRef.current = requestAnimationFrame(animate);
 
     let mouseMoveTimeout: number | undefined;
     const handleMouseMove = (e: MouseEvent) => {
@@ -191,6 +238,7 @@ export const MatrixGrid = ({ className = '' }: MatrixGridProps) => {
     canvas.addEventListener('mouseleave', handleMouseLeave);
 
     return () => {
+      observer.disconnect();
       clearTimeout(resizeTimeout);
       if (mouseMoveTimeout !== undefined) {
         cancelAnimationFrame(mouseMoveTimeout);
@@ -203,7 +251,7 @@ export const MatrixGrid = ({ className = '' }: MatrixGridProps) => {
         cancelAnimationFrame(animationFrameRef.current);
       }
     };
-  }, []);
+  }, [isVisible, prefersReducedMotion]);
 
   return (
     <canvas
