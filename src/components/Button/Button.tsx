@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
 import { useRef } from 'react';
+import type { ReactNode } from 'react';
 import { GlitchText } from '../GlitchText';
 import type { GlitchTextRef } from '../GlitchText';
 
@@ -10,6 +11,9 @@ interface ButtonProps {
   onClick?: () => void;
   disabled?: boolean;
   className?: string;
+  icon?: ReactNode;
+  href?: string;
+  external?: boolean;
 }
 
 export const Button = ({
@@ -19,6 +23,9 @@ export const Button = ({
   onClick,
   disabled = false,
   className = '',
+  icon,
+  href,
+  external = false,
 }: ButtonProps) => {
   const glitchTextRef = useRef<GlitchTextRef>(null);
 
@@ -33,6 +40,7 @@ export const Button = ({
     overflow-hidden
     border-2
     ${disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
+    ${icon ? 'inline-flex items-center gap-3 w-fit' : ''}
   `;
 
   const variantStyles = {
@@ -79,17 +87,39 @@ export const Button = ({
     }
   };
 
+  const content = (
+    <>
+      {icon && <span className="relative z-10 transition-transform duration-200">{icon}</span>}
+      <span className="relative z-10">
+        <GlitchText ref={glitchTextRef} glitchOptions={{ disabled }} animationDuration={0.3}>
+          {children}
+        </GlitchText>
+      </span>
+    </>
+  );
+
+  const commonProps = {
+    onMouseEnter: handleMouseEnter,
+    onMouseLeave: handleMouseLeave,
+    className: `${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${icon ? 'group' : ''} ${className}`,
+  };
+
+  if (href) {
+    return (
+      <motion.a
+        href={href}
+        target={external ? '_blank' : undefined}
+        rel={external ? 'noopener noreferrer' : undefined}
+        {...commonProps}
+      >
+        {content}
+      </motion.a>
+    );
+  }
+
   return (
-    <motion.button
-      onClick={onClick}
-      disabled={disabled}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      className={`${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${className}`}
-    >
-      <GlitchText ref={glitchTextRef} glitchOptions={{ disabled }} animationDuration={0.3}>
-        {children}
-      </GlitchText>
+    <motion.button onClick={onClick} disabled={disabled} {...commonProps}>
+      {content}
     </motion.button>
   );
 };

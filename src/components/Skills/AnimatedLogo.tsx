@@ -42,23 +42,14 @@ export const AnimatedLogo = ({ logo, isMobile = false }: AnimatedLogoProps) => {
               ...(logo.side === 'left' ? { left: logo.left } : { right: logo.right }),
             }
       }
-      className="w-20 h-20 md:w-28 md:h-28 lg:w-32 lg:h-32 xl:w-36 xl:h-36 relative"
+      className="relative h-20 w-20 md:h-28 md:w-28 lg:h-32 lg:w-32 xl:h-36 xl:w-36"
     >
-      <div className="absolute inset-0 z-10 pointer-events-none">
-        <img
-          src={frameSvg}
-          alt="frame"
-          className="w-full h-full"
-        />
+      <div className="pointer-events-none absolute inset-0 z-10">
+        <img src={frameSvg} alt="frame" className="h-full w-full" />
       </div>
-      <div className="absolute inset-0 p-5 md:p-6 lg:p-7 flex items-center justify-center">
-        <img
-          src={logo.src}
-          alt={logo.alt}
-          className="w-full h-full object-contain"
-        />
+      <div className="absolute inset-0 flex items-center justify-center p-5 md:p-6 lg:p-7">
+        <img src={logo.src} alt={logo.alt} className="h-full w-full object-contain" />
       </div>
     </motion.div>
   );
 };
-

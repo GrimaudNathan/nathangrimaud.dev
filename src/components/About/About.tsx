@@ -44,7 +44,7 @@ export const About = () => {
 
   return (
     <section ref={containerRef} className="relative h-[500vh]">
-      <div className="sticky top-0 flex min-h-screen items-center justify-center bg-terminal-bg-white text-black rounded-t-4xl">
+      <div className="bg-terminal-bg-white sticky top-0 flex min-h-screen items-center justify-center rounded-t-4xl text-black">
         <div className="mx-auto max-w-4xl px-6 py-20">
           <div className="space-y-2">
             {lines.map((line, index) => (

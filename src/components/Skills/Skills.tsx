@@ -36,11 +36,11 @@ const skills = [
 
 export const Skills = () => {
   return (
-    <section className="bg-terminal-bg-white py-20 relative overflow-hidden">
-      <h1 className="text-black font-bold text-center text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-mono tracking-tight">
+    <section className="bg-terminal-bg-white relative overflow-hidden py-20">
+      <h1 className="text-center font-mono text-5xl font-bold tracking-tight text-black md:text-6xl lg:text-7xl xl:text-8xl">
         3 ANS DE DÉVELOPPEMENT
       </h1>
-      <div className="flex flex-col items-center justify-center mt-16 gap-2 relative">
+      <div className="relative mt-16 flex flex-col items-center justify-center gap-2">
         <div className="hidden md:block">
           {logos.map((logo) => (
             <AnimatedLogo key={logo.alt} logo={logo} isMobile={false} />
@@ -49,7 +49,7 @@ export const Skills = () => {
         {skills.map((skill) => (
           <SkillItem key={skill} skill={skill} />
         ))}
-        <div className="grid grid-cols-3 gap-4 mt-12 md:hidden">
+        <div className="mt-12 grid grid-cols-3 gap-4 md:hidden">
           {logos.map((logo) => (
             <AnimatedLogo key={`mobile-${logo.alt}`} logo={logo} isMobile={true} />
           ))}

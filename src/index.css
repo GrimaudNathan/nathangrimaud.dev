@@ -2,13 +2,11 @@
 
 @theme {
   --color-terminal-bg-primary: #0a0a0a;
-  --color-terminal-bg-secondary: #0f0f0f;
-  --color-terminal-bg-tertiary: #141414;
+  --color-terminal-bg-secondary: #1f1f1f;
   --color-terminal-bg-white: #eeeeee;
 
   --color-terminal-text-primary: #00ff00;
   --color-terminal-text-secondary: #00cc00;
-  --color-terminal-text-tertiary: #99ff99;
   --color-terminal-text-muted: #666666;
 
   --color-terminal-border-primary: #1a1a1a;

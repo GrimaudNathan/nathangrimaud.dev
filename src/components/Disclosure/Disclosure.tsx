@@ -13,12 +13,12 @@ export const Disclosure = ({ title, year, skills = [], children }: DisclosurePro
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="border border-terminal-border-primary/50 bg-white hover:border-terminal-text-primary transition-colors duration-200">
+    <div className="border-terminal-border-primary/50 hover:border-terminal-text-primary border bg-white transition-colors duration-200">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 p-4 text-left"
+        className="flex w-full flex-col gap-3 p-4 text-left sm:flex-row sm:items-center sm:gap-4"
       >
-        <div className="flex items-center gap-4 flex-1 min-w-0">
+        <div className="flex min-w-0 flex-1 items-center gap-4">
           <motion.div
             animate={{ rotate: isOpen ? 90 : 0 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
@@ -41,14 +41,14 @@ export const Disclosure = ({ title, year, skills = [], children }: DisclosurePro
             </svg>
           </motion.div>
 
-          <div className="flex-1 min-w-0">
-            <p className="text-black font-mono font-semibold truncate">{title}</p>
+          <div className="min-w-0 flex-1">
+            <p className="truncate font-mono font-semibold text-black">{title}</p>
           </div>
         </div>
 
-        <div className="flex items-center gap-4 shrink-0 sm:ml-auto">
+        <div className="flex shrink-0 items-center gap-4 sm:ml-auto">
           {skills.length > 0 && (
-            <div className="flex gap-2 flex-wrap">
+            <div className="flex flex-wrap gap-2">
               {skills.map((skill) => (
                 <Tag key={skill}>{skill}</Tag>
               ))}
@@ -67,13 +67,13 @@ export const Disclosure = ({ title, year, skills = [], children }: DisclosurePro
             transition={{ duration: 0.3, ease: 'easeInOut' }}
             className="overflow-hidden"
           >
-            <div className="px-4 pb-4 pt-0 border-t border-terminal-border-primary/20">
+            <div className="border-terminal-border-primary/20 border-t px-4 pt-0 pb-4">
               <motion.p
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.3, delay: 0.1 }}
-                className="text-gray-700 font-mono text-sm leading-relaxed pt-4"
+                className="pt-4 font-mono text-sm leading-relaxed text-gray-700"
               >
                 {children}
               </motion.p>
@@ -84,4 +84,3 @@ export const Disclosure = ({ title, year, skills = [], children }: DisclosurePro
     </div>
   );
 };
-

@@ -13,26 +13,17 @@ export const SkillItem = ({ skill }: SkillItemProps) => {
     offset: ['start end', 'end start'],
   });
 
-  const scale = useTransform(
-    scrollYProgress,
-    [0, 0.3, 0.5, 0.7, 1],
-    [0.7, 0.7, 1.1, 0.7, 0.7]
-  );
-  
-  const opacity = useTransform(
-    scrollYProgress,
-    [0, 0.3, 0.5, 0.7, 1],
-    [0.7, 0.7, 1, 0.7, 0.7]
-  );
+  const scale = useTransform(scrollYProgress, [0, 0.3, 0.5, 0.7, 1], [0.7, 0.7, 1.1, 0.7, 0.7]);
+
+  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.5, 0.7, 1], [0.7, 0.7, 1, 0.7, 0.7]);
 
   return (
     <motion.div
       ref={ref}
       style={{ scale, opacity }}
-      className="text-black font-mono font-bold text-3xl md:text-4xl lg:text-5xl xl:text-6xl"
+      className="font-mono text-3xl font-bold text-black md:text-4xl lg:text-5xl xl:text-6xl"
     >
       {skill}
     </motion.div>
   );
 };
-

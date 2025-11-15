@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
-import { useEffect, useImperativeHandle, type Ref } from 'react';
+import { useEffect, useImperativeHandle } from 'react';
+import type { Ref } from 'react';
 import { useGlitch } from '../../hooks/useGlitch';
 import type { UseGlitchOptions } from '../../hooks/useGlitch';
 
@@ -44,7 +45,14 @@ export const GlitchText = ({
         startGlitch();
       }, triggerDelay);
 
-      return () => clearTimeout(timer);
+      const interval = setInterval(() => {
+        startGlitch();
+      }, 5000);
+
+      return () => {
+        clearTimeout(timer);
+        clearInterval(interval);
+      };
     }
   }, [autoTrigger, triggerDelay, startGlitch]);
 
