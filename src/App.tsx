@@ -1,27 +1,15 @@
 import { useState, useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import { Menu } from './components/Menu';
-import { Router } from './router/Router';
 import { Loading } from './components/Loading';
-
-type Route = '/' | '/design-system' | '/404';
+import { Home } from './pages/Home';
+import { DesignSystem } from './pages/DesignSystem';
+import { NotFound } from './pages/NotFound';
 
 function App() {
-  const [page, setPage] = useState<Route>('/');
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const handlePopState = () => {
-      const path = window.location.pathname as Route;
-      setPage(path || '/');
-    };
-
-    handlePopState();
-    window.addEventListener('popstate', handlePopState);
-    return () => window.removeEventListener('popstate', handlePopState);
-  }, []);
-
-  useEffect(() => {
-    // Simuler le chargement initial
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 1500);
@@ -36,7 +24,11 @@ function App() {
   return (
     <>
       <Menu />
-      <Router page={page} />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/design-system" element={<DesignSystem />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </>
   );
 }

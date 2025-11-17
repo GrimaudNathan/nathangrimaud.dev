@@ -1,4 +1,5 @@
 import { motion } from 'motion/react';
+import { Link as RouterLink } from 'react-router-dom';
 import { GlitchText } from '../GlitchText';
 
 interface LinkProps {
@@ -45,6 +46,21 @@ export const Link = ({
       hover:text-terminal-text-secondary
     `,
   };
+
+  const isInternalRoute = href.startsWith('/') && !external;
+
+  if (isInternalRoute) {
+    return (
+      <motion.div className="inline-block">
+        <RouterLink
+          to={href}
+          className={`${baseStyles} ${variantStyles[variant]} ${className}`}
+        >
+          <GlitchText animationDuration={0.3}>{children}</GlitchText>
+        </RouterLink>
+      </motion.div>
+    );
+  }
 
   return (
     <motion.a
