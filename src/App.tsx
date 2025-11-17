@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
-import { AnimatePresence } from 'motion/react';
 import { Menu } from './components/Menu';
 import { Router } from './router/Router';
 import { Loading } from './components/Loading';
 
-type Route = '/' | '/design-system';
+type Route = '/' | '/design-system' | '/404';
 
 function App() {
   const [page, setPage] = useState<Route>('/');
@@ -30,18 +29,14 @@ function App() {
     return () => clearTimeout(timer);
   }, []);
 
+  if (isLoading) {
+    return <Loading />;
+  }
+
   return (
     <>
-      <AnimatePresence mode="wait">
-        {isLoading ? (
-          <Loading key="loading" />
-        ) : (
-          <>
-            <Menu />
-            <Router page={page} />
-          </>
-        )}
-      </AnimatePresence>
+      <Menu />
+      <Router page={page} />
     </>
   );
 }

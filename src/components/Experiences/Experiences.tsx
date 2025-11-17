@@ -8,12 +8,20 @@ export const Experiences = () => {
       title: 'Soyhuce',
       year: '2023 - 2025',
       skills: ['Vue', 'React', 'TypeScript', 'Storybook'],
-      description:
-        "Développement d'un logiciel SaaS de RH permettant de planifier automatiquement les calendriers de milliers de personnes. Application ultra personnalisable et paramétrable avec une interface moderne et intuitive.",
+      description: (
+        <>
+          Développement d'un logiciel SaaS de RH permettant de planifier automatiquement les
+          calendriers de milliers de personnes. Application ultra personnalisable et paramétrable
+          avec une interface moderne et intuitive.{' '}
+          <Link href="https://happyplan.soyhuce.fr/" variant="secondary" external>
+            Voir le site
+          </Link>
+        </>
+      ),
     },
     {
-      id: 'useradgent',
-      title: 'Useradgent',
+      id: 'useradgents',
+      title: 'Useradgents',
       year: '2022 - 2023',
       skills: ['Vue', 'Nuxt', 'JavaScript'],
       description: (
@@ -32,8 +40,16 @@ export const Experiences = () => {
       title: 'Outmind',
       year: '2022',
       skills: ['React', 'TypeScript'],
-      description:
-        "Stage de fin d'études sur un SaaS moteur de recherche permettant de centraliser de nombreuses applications et bases de données pour les rechercher via un moteur de recherche unifié. Développement front-end et contribution au DevOps avec Docker, AWS et Kubernetes.",
+      description: (
+        <>
+          Stage de fin d'études sur un SaaS moteur de recherche permettant de centraliser de
+          nombreuses applications et bases de données pour les rechercher via un moteur de recherche
+          unifié. Développement front-end et contribution au DevOps avec Docker, AWS et Kubernetes.{' '}
+          <Link href="https://www.outmind.ai/" variant="secondary" external>
+            Voir le site
+          </Link>
+        </>
+      ),
     },
   ];
 

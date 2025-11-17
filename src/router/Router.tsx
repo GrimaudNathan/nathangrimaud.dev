@@ -1,11 +1,8 @@
-import { lazy, Suspense } from 'react';
 import { Home } from '../pages/Home';
-import { Loading } from '../components/Loading';
+import { DesignSystem } from '../pages/DesignSystem';
+import { NotFound } from '../pages/NotFound';
 
-// Lazy load DesignSystem
-const DesignSystem = lazy(() => import('../pages/DesignSystem').then(module => ({ default: module.DesignSystem })));
-
-type Route = '/' | '/design-system';
+type Route = '/' | '/design-system' | '/404';
 
 interface RouterProps {
   page: Route;
@@ -16,12 +13,10 @@ export const Router = ({ page }: RouterProps) => {
     case '/':
       return <Home />;
     case '/design-system':
-      return (
-        <Suspense fallback={<Loading />}>
-          <DesignSystem />
-        </Suspense>
-      );
+      return <DesignSystem />;
+    case '/404':
+      return <NotFound />;
     default:
-      return <Home />;
+      return <NotFound />;
   }
 };

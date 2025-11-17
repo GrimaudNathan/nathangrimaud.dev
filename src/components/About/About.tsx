@@ -10,36 +10,36 @@ export const About = () => {
   });
 
   const lines = [
+  
     {
       id: 'line-1',
       content: (
         <Fragment>
           Je suis développeur <span className="text-terminal-text-secondary">front-end</span>{' '}
-          passionné par la création
+          actuellement en recherche
         </Fragment>
       ),
     },
-    { id: 'line-2', content: "d'expériences web modernes et interactives." },
+    { id: 'line-2', content: "d’une nouvelle opportunité." },
     {
       id: 'line-3',
       content: (
         <Fragment>
           Spécialisé en <span className="text-terminal-text-secondary">React</span>,{' '}
-          <span className="text-terminal-text-secondary">TypeScript</span> et les animations
+          <span className="text-terminal-text-secondary">Vue</span> et <span className="text-terminal-text-secondary">TypeScript</span>,
         </Fragment>
       ),
     },
-    { id: 'line-4', content: 'pour créer des interfaces utilisateur exceptionnelles.' },
+    { id: 'line-4', content: 'je conçois des interfaces fiables, modernes et performantes.' },
     {
       id: 'line-5',
       content: (
         <Fragment>
-          Je combine design et <span className="text-terminal-text-secondary">code</span> pour
-          transformer
+          Attentif à la qualité du <span className="text-terminal-text-secondary">code</span> et à la cohérence visuelle,
         </Fragment>
       ),
     },
-    { id: 'line-6', content: 'des idées en réalités numériques.' },
+    { id: 'line-6', content: 'je dispose également de solides notions en UX/UI.' },
   ];
 
   return (

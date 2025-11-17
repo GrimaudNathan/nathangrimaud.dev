@@ -109,10 +109,10 @@ export const Hero = () => {
                     }
               }
             >
-              <span>UX</span>
-              <span>WEB</span>
-              <span>MOTION</span>
-              <span>VISUAL</span>
+              <span>REACT</span>
+              <span>VUE</span>
+              <span>TYPESCRIPT</span>
+              <span>UX/UI</span>
             </motion.div>
           </div>
         </div>
