@@ -8,13 +8,13 @@ interface AnimatedLineProps {
   scrollProgress: MotionValue<number>;
 }
 
-export const AnimatedLine = ({
+export function AnimatedLine({
   children,
   index,
   totalLines,
   scrollProgress,
-}: AnimatedLineProps) => {
-  const animationRange = 0.8;
+}: AnimatedLineProps) {
+  const animationRange = 0.6;
   const startProgress = (index / totalLines) * animationRange;
   const endProgress = ((index + 1) / totalLines) * animationRange;
 
@@ -27,4 +27,4 @@ export const AnimatedLine = ({
       </motion.div>
     </div>
   );
-};
+}

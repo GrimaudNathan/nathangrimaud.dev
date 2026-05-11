@@ -1,7 +1,7 @@
 import { motion } from 'motion/react';
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion';
 
-export const Loading = () => {
+export default function Loading() {
   const prefersReducedMotion = usePrefersReducedMotion();
 
   return (
@@ -51,5 +51,4 @@ export const Loading = () => {
       </div>
     </motion.div>
   );
-};
-
+}

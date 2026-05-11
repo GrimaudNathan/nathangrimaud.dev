@@ -1,13 +1,13 @@
-import { Disclosure } from '../Disclosure';
-import { Link } from '../Link';
+import Disclosure from '../Disclosure/Disclosure';
+import Link from '../Link/Link';
 
-export const Experiences = () => {
+export default function Experiences() {
   const professionalExperiences = [
     {
       id: 'soyhuce',
       title: 'Soyhuce',
       year: '2023 - 2025',
-      skills: ['Vue', 'React', 'TypeScript', 'Storybook'],
+      skills: ['React', 'TypeScript', 'Storybook'],
       description: (
         <>
           Développement d'un logiciel SaaS de RH permettant de planifier automatiquement les
@@ -97,4 +97,4 @@ export const Experiences = () => {
       </div>
     </section>
   );
-};
+}

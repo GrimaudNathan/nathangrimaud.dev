@@ -1,6 +1,6 @@
 import { motion } from 'motion/react';
 import { Link as RouterLink } from 'react-router-dom';
-import { GlitchText } from '../GlitchText';
+import GlitchText from '../GlitchText/GlitchText';
 
 interface LinkProps {
   children: string;
@@ -10,13 +10,13 @@ interface LinkProps {
   external?: boolean;
 }
 
-export const Link = ({
+export default function Link({
   children,
   href,
   variant = 'primary',
   className = '',
   external = false,
-}: LinkProps) => {
+}: LinkProps) {
   const baseStyles = `
     relative
     font-mono
@@ -72,4 +72,4 @@ export const Link = ({
       <GlitchText animationDuration={0.3}>{children}</GlitchText>
     </motion.a>
   );
-};
+}

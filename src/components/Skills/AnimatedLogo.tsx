@@ -17,7 +17,7 @@ type AnimatedLogoProps = {
   isMobile?: boolean;
 };
 
-export const AnimatedLogo = ({ logo, isMobile = false }: AnimatedLogoProps) => {
+export function AnimatedLogo({ logo, isMobile = false }: AnimatedLogoProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -59,4 +59,4 @@ export const AnimatedLogo = ({ logo, isMobile = false }: AnimatedLogoProps) => {
       </div>
     </motion.div>
   );
-};
+}

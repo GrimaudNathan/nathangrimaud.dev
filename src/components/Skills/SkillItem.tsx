@@ -5,7 +5,7 @@ interface SkillItemProps {
   skill: string;
 }
 
-export const SkillItem = ({ skill }: SkillItemProps) => {
+export function SkillItem({ skill }: SkillItemProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -26,4 +26,4 @@ export const SkillItem = ({ skill }: SkillItemProps) => {
       {skill}
     </motion.div>
   );
-};
+}

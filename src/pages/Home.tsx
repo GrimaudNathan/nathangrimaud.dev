@@ -1,10 +1,10 @@
-import { Hero } from '../components/Hero';
-import { About } from '../components/About';
-import { Skills } from '../components/Skills';
-import { Experiences } from '../components/Experiences';
-import { Footer } from '../components/Footer';
+import Hero from '../components/Hero/Hero';
+import About from '../components/About/About';
+import Skills from '../components/Skills/Skills';
+import Experiences from '../components/Experiences/Experiences';
+import Footer from '../components/Footer/Footer';
 
-export const Home = () => {
+export function Home() {
   return (
     <div className="bg-terminal-bg-primary">
       <Hero />
@@ -14,4 +14,4 @@ export const Home = () => {
       <Footer />
     </div>
   );
-};
+}

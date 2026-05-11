@@ -3,7 +3,7 @@ interface ColorSquareProps {
   label: string;
 }
 
-export const ColorSquare = ({ colorClass, label }: ColorSquareProps) => {
+export default function ColorSquare({ colorClass, label }: ColorSquareProps) {
   return (
     <div className="space-y-2">
       <div
@@ -12,4 +12,4 @@ export const ColorSquare = ({ colorClass, label }: ColorSquareProps) => {
       <p className="text-terminal-text-muted text-xs">{label}</p>
     </div>
   );
-};
+}

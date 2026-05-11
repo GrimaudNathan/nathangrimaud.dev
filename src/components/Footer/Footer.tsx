@@ -1,12 +1,13 @@
 import { motion } from 'motion/react';
-import { GlitchText } from '../GlitchText';
-import { Button } from '../Button';
+import { GithubCalendar } from '../ui/github-calendar';
+import GlitchText from '../GlitchText/GlitchText';
+import Button from '../Button/Button';
 import { LinkedInIcon } from '../../assets/LinkedInIcon';
 import { GitHubIcon } from '../../assets/GitHubIcon';
 import { EmailIcon } from '../../assets/EmailIcon';
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion';
 
-export const Footer = () => {
+export default function Footer() {
   const firstName = 'NATHAN';
   const lastName = 'GRIMAUD';
   const email = 'natgrimaud22@gmail.com';
@@ -105,6 +106,23 @@ export const Footer = () => {
         </div>
 
         <motion.div
+          className="mb-12 overflow-x-auto"
+          initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.5, delay: 0.35 }}
+        >
+          <h3 className="text-terminal-text-secondary mb-4 font-mono text-lg font-bold tracking-wider uppercase">
+            Activité GitHub
+          </h3>
+          <GithubCalendar
+            username="GrimaudNathan"
+            monthsToShow={6}
+            className="[&_svg]:text-terminal-text-secondary"
+          />
+        </motion.div>
+
+        <motion.div
           className="border-terminal-border-primary border-t pt-8"
           initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -120,4 +138,4 @@ export const Footer = () => {
       </div>
     </footer>
   );
-};
+}

@@ -26,7 +26,7 @@ const skills = [
   'VUE & REACT',
   'DESIGN SYSTEM',
   'RESPONSIVE DESIGN',
-  'WEBPACK & VITE',
+  'PROMPT ENGINEERING',
   'ACCESSIBILITÉ',
   'TESTS UNITAIRES',
   'SSR',
@@ -34,11 +34,11 @@ const skills = [
   'CI/CD',
 ];
 
-export const Skills = () => {
+export default function Skills() {
   return (
     <section className="bg-terminal-bg-white relative overflow-hidden py-20">
       <h1 className="text-center font-mono text-5xl font-bold tracking-tight text-black md:text-6xl lg:text-7xl xl:text-8xl">
-        3 ANS DE DÉVELOPPEMENT
+        4 ANS DE DÉVELOPPEMENT
       </h1>
       <div className="relative mt-16 flex flex-col items-center justify-center gap-2">
         <div className="hidden md:block">
@@ -57,4 +57,4 @@ export const Skills = () => {
       </div>
     </section>
   );
-};
+}

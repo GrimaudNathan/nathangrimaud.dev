@@ -1,14 +1,15 @@
-import { Button } from '../components/Button';
-import { Link } from '../components/Link';
-import { GlitchText } from '../components/GlitchText';
-import { Tag } from '../components/Tag';
-import { Disclosure } from '../components/Disclosure';
-import { ColorSquare } from '../components/ColorSquare';
+import Button from '../components/Button/Button';
+import Link from '../components/Link/Link';
+import GlitchText from '../components/GlitchText/GlitchText';
+import Tag from '../components/Tag/Tag';
+import Disclosure from '../components/Disclosure/Disclosure';
+import ColorSquare from '../components/ColorSquare/ColorSquare';
+import { GithubCalendar } from '../components/ui/github-calendar';
 import { LinkedInIcon } from '../assets/LinkedInIcon';
 import { GitHubIcon } from '../assets/GitHubIcon';
 import { EmailIcon } from '../assets/EmailIcon';
 
-export const DesignSystem = () => {
+export function DesignSystem() {
   return (
     <div className="bg-terminal-bg-secondary min-h-screen">
       <div className="mx-auto max-w-4xl space-y-8 p-12">
@@ -171,6 +172,15 @@ export const DesignSystem = () => {
 
         <div className="border-terminal-border-secondary space-y-6 rounded border-2 p-8">
           <div className="space-y-4">
+            <h2 className="text-terminal-text-primary text-xl">Github Calendar</h2>
+            <div className="overflow-x-auto rounded-xl border border-terminal-border-primary bg-terminal-bg-primary p-4 md:p-6">
+              <GithubCalendar username="GrimaudNathan" monthsToShow={6} />
+            </div>
+          </div>
+        </div>
+
+        <div className="border-terminal-border-secondary space-y-6 rounded border-2 p-8">
+          <div className="space-y-4">
             <h2 className="text-terminal-text-primary text-xl">Disclosure Component</h2>
             <div className="space-y-4">
               <h2 className="text-terminal-text-muted text-xl">With Skills</h2>
@@ -193,4 +203,4 @@ export const DesignSystem = () => {
       </div>
     </div>
   );
-};
+}

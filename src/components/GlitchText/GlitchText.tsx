@@ -21,7 +21,7 @@ interface GlitchTextProps {
   ref?: Ref<GlitchTextRef>;
 }
 
-export const GlitchText = ({
+export default function GlitchText({
   children,
   className = '',
   animationDuration = 0.4,
@@ -31,7 +31,7 @@ export const GlitchText = ({
   autoTrigger = false,
   triggerDelay = 0,
   ref,
-}: GlitchTextProps) => {
+}: GlitchTextProps) {
   const { glitchText, isGlitching, startGlitch, stopGlitch } = useGlitch(children, glitchOptions);
 
   useImperativeHandle(ref, () => ({
@@ -111,4 +111,4 @@ export const GlitchText = ({
       )}
     </span>
   );
-};
+}

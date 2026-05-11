@@ -1,6 +1,6 @@
 import { motion } from 'motion/react';
 
-export const ScrollArrowIcon = () => {
+export function ScrollArrowIcon() {
   return (
     <motion.svg
       xmlns="http://www.w3.org/2000/svg"
@@ -24,4 +24,4 @@ export const ScrollArrowIcon = () => {
       />
     </motion.svg>
   );
-};
+}

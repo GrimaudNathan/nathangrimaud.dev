@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Tag } from '../Tag';
+import Tag from '../Tag/Tag';
 
 interface DisclosureProps {
   title: string;
@@ -9,7 +9,12 @@ interface DisclosureProps {
   children: React.ReactNode;
 }
 
-export const Disclosure = ({ title, year, skills = [], children }: DisclosureProps) => {
+export default function Disclosure({
+  title,
+  year,
+  skills = [],
+  children,
+}: DisclosureProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -83,4 +88,4 @@ export const Disclosure = ({ title, year, skills = [], children }: DisclosurePro
       </AnimatePresence>
     </div>
   );
-};
+}

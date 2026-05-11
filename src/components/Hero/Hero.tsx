@@ -1,10 +1,10 @@
 import { motion } from 'motion/react';
-import { MatrixGrid } from '../MatrixGrid';
+import MatrixGrid from '../MatrixGrid/MatrixGrid';
 import { ScrollArrowIcon } from '../../assets/ScrollArrowIcon';
-import { GlitchText } from '../GlitchText';
+import GlitchText from '../GlitchText/GlitchText';
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion';
 
-export const Hero = () => {
+export default function Hero() {
   const firstName = 'NATHAN';
   const lastName = 'GRIMAUD';
   const prefersReducedMotion = usePrefersReducedMotion();
@@ -119,4 +119,4 @@ export const Hero = () => {
       </div>
     </section>
   );
-};
+}

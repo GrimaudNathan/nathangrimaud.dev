@@ -1,8 +1,8 @@
 import { motion } from 'motion/react';
 import { useRef } from 'react';
 import type { ReactNode } from 'react';
-import { GlitchText } from '../GlitchText';
-import type { GlitchTextRef } from '../GlitchText';
+import GlitchText from '../GlitchText/GlitchText';
+import type { GlitchTextRef } from '../GlitchText/GlitchText';
 
 interface ButtonProps {
   children: string;
@@ -16,7 +16,7 @@ interface ButtonProps {
   external?: boolean;
 }
 
-export const Button = ({
+export default function Button({
   children,
   variant = 'primary',
   size = 'md',
@@ -26,7 +26,7 @@ export const Button = ({
   icon,
   href,
   external = false,
-}: ButtonProps) => {
+}: ButtonProps) {
   const glitchTextRef = useRef<GlitchTextRef>(null);
 
   const baseStyles = `
@@ -122,4 +122,4 @@ export const Button = ({
       {content}
     </motion.button>
   );
-};
+}

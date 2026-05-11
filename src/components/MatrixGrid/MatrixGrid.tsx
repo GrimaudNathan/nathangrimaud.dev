@@ -4,7 +4,7 @@ interface MatrixGridProps {
   className?: string;
 }
 
-export const MatrixGrid = ({ className = '' }: MatrixGridProps) => {
+export default function MatrixGrid({ className = '' }: MatrixGridProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationFrameRef = useRef<number | undefined>(undefined);
   const mousePosRef = useRef<{ x: number; y: number } | null>(null);
@@ -264,4 +264,4 @@ export const MatrixGrid = ({ className = '' }: MatrixGridProps) => {
       }}
     />
   );
-};
+}

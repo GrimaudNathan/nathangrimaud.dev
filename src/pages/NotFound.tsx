@@ -1,7 +1,7 @@
-import { Link } from '../components/Link';
-import { GlitchText } from '../components/GlitchText';
+import Link from '../components/Link/Link';
+import GlitchText from '../components/GlitchText/GlitchText';
 
-export const NotFound = () => {
+export function NotFound() {
   return (
     <div className="bg-terminal-bg-primary flex min-h-screen items-center justify-center">
       <div className="text-center space-y-8 px-4">
@@ -29,5 +29,5 @@ export const NotFound = () => {
       </div>
     </div>
   );
-};
+}
 

@@ -1,6 +1,6 @@
-import { Link } from '../Link';
+import Link from '../Link/Link';
 
-export const Menu = () => {
+export default function Menu() {
   const email = 'natgrimaud22@gmail.com';
   const linkedinUrl = 'https://linkedin.com/in/nathangrimaud';
   const linkedinPath = linkedinUrl.split('/').pop()?.toUpperCase() || 'PROFILE';
@@ -19,4 +19,4 @@ export const Menu = () => {
       </div>
     </nav>
   );
-};
+}

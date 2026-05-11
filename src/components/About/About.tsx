@@ -2,7 +2,7 @@ import { useScroll } from 'motion/react';
 import { useRef, Fragment } from 'react';
 import { AnimatedLine } from './AnimatedLine';
 
-export const About = () => {
+export default function About() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -43,7 +43,7 @@ export const About = () => {
   ];
 
   return (
-    <section ref={containerRef} className="relative h-[500vh]">
+    <section ref={containerRef} className="relative h-[350vh]">
       <div className="bg-terminal-bg-white sticky top-0 flex min-h-screen items-center justify-center rounded-t-4xl text-black">
         <div className="mx-auto max-w-4xl px-6 py-20">
           <div className="space-y-2">
@@ -62,4 +62,4 @@ export const About = () => {
       </div>
     </section>
   );
-};
+}

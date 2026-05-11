@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { Menu } from './components/Menu';
-import { Loading } from './components/Loading';
+import Menu from './components/Menu/Menu';
+import Loading from './components/Loading/Loading';
 import { Home } from './pages/Home';
 import { DesignSystem } from './pages/DesignSystem';
 import { NotFound } from './pages/NotFound';
 
-function App() {
+export default function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -32,5 +32,3 @@ function App() {
     </>
   );
 }
-
-export default App;
