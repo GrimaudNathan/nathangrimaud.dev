@@ -32,10 +32,10 @@ interface GithubCalendarProps {
 
 /** Une seule palette : couleurs terminal du design system (`src/index.css`). */
 const heatmapLevels = {
-  level0: 'bg-terminal-border-secondary/40',
-  level1: 'bg-terminal-text-muted/35',
-  level2: 'bg-terminal-text-secondary/50',
-  level3: 'bg-terminal-text-secondary',
+  level0: 'bg-terminal-border-secondary/50',
+  level1: 'bg-terminal-text-secondary/50',
+  level2: 'bg-terminal-text-secondary',
+  level3: 'bg-terminal-text-primary/50',
   level4: 'bg-terminal-text-primary',
 } as const;
 
@@ -152,7 +152,7 @@ export function GithubCalendar({
   return (
     <div className={cn('flex w-max max-w-full flex-col gap-4', className)}>
       {showTotal && (
-        <div className="flex gap-2 items-center justify-between">
+        <div className="flex gap-2 md:items-center flex-col md:flex-row">
           <div className="flex items-center gap-2">
             <GitHubIcon
               aria-hidden

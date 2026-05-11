@@ -21,7 +21,7 @@ export default function Disclosure({
     <div className="border-terminal-border-primary/50 hover:border-terminal-text-primary border bg-white transition-colors duration-200">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex w-full flex-col gap-3 p-4 text-left sm:flex-row sm:items-center sm:gap-4"
+        className="flex w-full flex-col gap-3 p-4 text-left sm:flex-row sm:items-center sm:gap-4 cursor-pointer"
       >
         <div className="flex min-w-0 flex-1 items-center gap-4">
           <motion.div
