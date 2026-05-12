@@ -4,15 +4,45 @@ import Link from '../Link/Link';
 export default function Experiences() {
   const professionalExperiences = [
     {
+      id: 'Cosmobilis',
+      title: 'Cosmobilis',
+      year: '2026',
+      skills: ['React', 'Next.js', 'TypeScript'],
+      description: (
+        <>
+          Développement from scratch d'une application web complète (site vitrine + backoffice
+          professionnel) pour un groupe en pleine croissance. Conception de l'architecture frontend,
+          implémentation du SSR avec Next.js et optimisation des Core Web Vitals - score SEO 90.
+        </>
+      ),
+    },
+    {
+      id: 'Colibri',
+      title: 'Colibri',
+      year: '2025',
+      skills: ['Vue', 'JavaScript'],
+      description: (
+        <>
+          Contribution au développement d'un SaaS B2B spécialisé en supply chain : plateforme de
+          planification automatisée des ventes et de gestion intelligente des stocks. Intégration
+          d'interfaces complexes orientées data pour des utilisateurs métier exigeants.{' '}
+          <Link href="https://www.colibri-snop.com/fr/" variant="secondary" external>
+            Voir le site
+          </Link>
+        </>
+      ),
+    },
+    {
       id: 'soyhuce',
       title: 'Soyhuce',
       year: '2023 - 2025',
       skills: ['React', 'TypeScript', 'Storybook'],
       description: (
         <>
-          Développement d'un logiciel SaaS de RH permettant de planifier automatiquement les
-          calendriers de milliers de personnes. Application ultra personnalisable et paramétrable
-          avec une interface moderne et intuitive.{' '}
+          Développement d'un SaaS RH permettant de planifier automatiquement les calendriers de
+          milliers de collaborateurs. Application hautement personnalisable avec une interface
+          moderne et intuitive — composants documentés sous Storybook et collaboration étroite avec
+          les équipes UX.{' '}
           <Link href="https://happyplan.soyhuce.fr/" variant="secondary" external>
             Voir le site
           </Link>
@@ -26,9 +56,9 @@ export default function Experiences() {
       skills: ['Vue', 'Nuxt', 'JavaScript'],
       description: (
         <>
-          Développement du site e-commerce agro-alimentaire de Franprix avec paiement sécurisé et
-          livraison à domicile. Enjeux principaux : performance, ergonomie et optimisation de la
-          logistique pour une expérience utilisateur optimale.{' '}
+          Développement du site e-commerce de Franprix — paiement sécurisé et livraison à domicile.
+          Enjeux principaux : performance, SEO et optimisation du tunnel d'achat pour une expérience
+          utilisateur fluide à grande échelle.{' '}
           <Link href="https://www.franprix.fr/" variant="secondary" external>
             Voir le site
           </Link>
@@ -42,9 +72,9 @@ export default function Experiences() {
       skills: ['React', 'TypeScript'],
       description: (
         <>
-          Stage de fin d'études sur un SaaS moteur de recherche permettant de centraliser de
-          nombreuses applications et bases de données pour les rechercher via un moteur de recherche
-          unifié. Développement front-end et contribution au DevOps avec Docker, AWS et Kubernetes.{' '}
+          Stage de fin d'études sur un SaaS de moteur de recherche unifié, permettant de centraliser
+          de nombreuses applications et bases de données en un point d'accès unique. Développement
+          frontend et contribution DevOps (Docker, AWS, Kubernetes).{' '}
           <Link href="https://www.outmind.ai/" variant="secondary" external>
             Voir le site
           </Link>

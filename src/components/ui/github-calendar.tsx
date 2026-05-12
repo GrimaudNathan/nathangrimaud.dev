@@ -22,8 +22,7 @@ interface GithubContributionData {
 
 interface GithubCalendarProps {
   username: string;
-  variant?: 'default' | 'minimal';
-  shape?: 'square' | 'rounded' | 'circle' | 'squircle';
+  shape?: 'square' | 'rounded' | 'circle';
   className?: string;
   showTotal?: boolean;
   /** Nombre de mois affichés (à partir d’aujourd’hui, en prenant les semaines les plus récentes). */
@@ -68,23 +67,19 @@ function weeksForMonths(months: number) {
   return Math.max(1, Math.round((months * 52) / 12));
 }
 
-function getShapeClass(shape: string) {
+function getShapeClass(shape: NonNullable<GithubCalendarProps['shape']>) {
   switch (shape) {
     case 'circle':
       return 'rounded-full';
     case 'square':
       return 'rounded-none';
-    case 'squircle':
-      return 'rounded-sm'; // Approximation
     case 'rounded':
-    default:
       return 'rounded-[2px]';
   }
 }
 
 export function GithubCalendar({
   username,
-  variant = 'default',
   shape = 'rounded',
   className,
   showTotal = true,
@@ -200,7 +195,6 @@ export function GithubCalendar({
             className="flex w-[14px] flex-col gap-[3px]"
           >
             {week.map((day, dayIndex) => {
-              const isMinimal = variant === 'minimal';
               const shapeClass = getShapeClass(shape);
 
               return (
@@ -228,7 +222,6 @@ export function GithubCalendar({
                     'aspect-square w-full transition-colors duration-200',
                     getLevelClass(day.contributionLevel),
                     shapeClass,
-                    isMinimal && 'scale-75 rounded-full',
                   )}
                 />
               );

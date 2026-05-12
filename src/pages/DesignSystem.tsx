@@ -171,10 +171,25 @@ export function DesignSystem() {
         </div>
 
         <div className="border-terminal-border-secondary space-y-6 rounded border-2 p-8">
-          <div className="space-y-4">
+          <div className="space-y-8">
             <h2 className="text-terminal-text-primary text-xl">Github Calendar</h2>
-            <div className="overflow-x-auto rounded-xl border border-terminal-border-primary bg-terminal-bg-primary p-4 md:p-6">
-              <GithubCalendar username="GrimaudNathan" monthsToShow={6} />
+
+            <div className="space-y-3">
+              <h3 className="text-terminal-text-muted text-xl">
+                6 months
+              </h3>
+              <div className="overflow-x-auto rounded-xl border border-terminal-border-primary bg-terminal-bg-primary p-4 md:p-6">
+                <GithubCalendar username="GrimaudNathan" monthsToShow={6} />
+              </div>
+            </div>
+
+            <div className="space-y-3">
+              <h3 className="text-terminal-text-muted text-xl">
+                Circle cells and 3 months
+              </h3>
+              <div className="overflow-x-auto rounded-xl border border-terminal-border-primary bg-terminal-bg-primary p-4 md:p-6">
+                <GithubCalendar username="GrimaudNathan" monthsToShow={3} shape="circle" />
+              </div>
             </div>
           </div>
         </div>

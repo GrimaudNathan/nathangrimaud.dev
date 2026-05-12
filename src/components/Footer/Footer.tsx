@@ -51,7 +51,7 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.5, delay: 0.1 }}
           >
-            <h3 className="text-terminal-text-secondary mb-6 font-mono text-lg font-bold tracking-wider uppercase">
+            <h3 className="text-terminal-text-muted mb-6 font-mono text-lg font-bold tracking-wider uppercase">
               Contact
             </h3>
             <div className="flex flex-col gap-4">
@@ -73,7 +73,7 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.5, delay: 0.2 }}
           >
-            <h3 className="text-terminal-text-secondary mb-6 font-mono text-lg font-bold tracking-wider uppercase">
+            <h3 className="text-terminal-text-muted mb-6 font-mono text-lg font-bold tracking-wider uppercase">
               Disponibilité
             </h3>
             <p className="text-terminal-text-primary mb-6 font-mono text-sm leading-relaxed">
@@ -91,7 +91,7 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.5, delay: 0.3 }}
           >
-            <h3 className="text-terminal-text-secondary mb-6 font-mono text-lg font-bold tracking-wider uppercase">
+            <h3 className="text-terminal-text-muted mb-6 font-mono text-lg font-bold tracking-wider uppercase">
               Navigation
             </h3>
             <div className="flex flex-col gap-3">
@@ -112,7 +112,7 @@ export default function Footer() {
           viewport={{ once: true }}
           transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.5, delay: 0.35 }}
         >
-          <h3 className="text-terminal-text-secondary mb-4 font-mono text-lg font-bold tracking-wider uppercase">
+          <h3 className="text-terminal-text-muted mb-4 font-mono text-lg font-bold tracking-wider uppercase">
             Activité GitHub
           </h3>
           <GithubCalendar

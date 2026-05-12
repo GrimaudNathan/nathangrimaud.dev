@@ -15,7 +15,7 @@ export default function About() {
       id: 'line-1',
       content: (
         <Fragment>
-          Je suis développeur <span className="text-terminal-text-secondary">front-end</span>{' '}
+          Je suis ingénieur <span className="text-terminal-text-secondary">front-end</span>{' '}
           actuellement en recherche
         </Fragment>
       ),
