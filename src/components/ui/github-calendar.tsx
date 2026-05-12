@@ -33,9 +33,9 @@ interface GithubCalendarProps {
 /** Une seule palette : couleurs terminal du design system (`src/index.css`). */
 const heatmapLevels = {
   level0: 'bg-terminal-border-secondary/50',
-  level1: 'bg-terminal-text-secondary/50',
-  level2: 'bg-terminal-text-secondary',
-  level3: 'bg-terminal-text-primary/50',
+  level1: 'bg-terminal-text-secondary/40',
+  level2: 'bg-terminal-text-primary/60',
+  level3: 'bg-terminal-text-primary/80',
   level4: 'bg-terminal-text-primary',
 } as const;
 

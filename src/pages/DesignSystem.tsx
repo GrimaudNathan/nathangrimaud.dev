@@ -135,19 +135,19 @@ export function DesignSystem() {
             <div className="space-y-4">
               <h2 className="text-terminal-text-muted text-xl">Auto Trigger</h2>
               <div className="flex flex-wrap items-center gap-4">
-                <GlitchText autoTrigger triggerDelay={0} glitchOptions={{ duration: 600 }}>
+                <GlitchText className="text-terminal-text-secondary" autoTrigger triggerDelay={0} glitchOptions={{ duration: 600 }}>
                   Auto Trigger
                 </GlitchText>
-                <GlitchText autoTrigger triggerDelay={600} glitchOptions={{ duration: 600 }}>
+                <GlitchText className="text-terminal-text-secondary" autoTrigger triggerDelay={600} glitchOptions={{ duration: 600 }}>
                   Delayed Trigger
                 </GlitchText>
               </div>
               <h2 className="text-terminal-text-muted text-xl">Custom Options</h2>
               <div className="flex flex-wrap items-center gap-4">
-                <GlitchText glitchOptions={{ duration: 200, frameInterval: 20 }}>
+                <GlitchText className="text-terminal-text-secondary" glitchOptions={{ duration: 150, frameInterval: 20 }}>
                   Fast Glitch
                 </GlitchText>
-                <GlitchText glitchOptions={{ duration: 600, frameInterval: 50 }}>
+                <GlitchText className="text-terminal-text-secondary" glitchOptions={{ duration: 1000, frameInterval: 50 }}>
                   Slow Glitch
                 </GlitchText>
               </div>
