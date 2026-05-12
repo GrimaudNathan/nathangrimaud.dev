@@ -10,8 +10,8 @@
   --color-terminal-bg-secondary: #1f1f1f;
   --color-terminal-bg-white: #eeeeee;
 
-  --color-terminal-text-primary: #00ff00;
-  --color-terminal-text-secondary: #00cc00;
+  --color-terminal-text-primary: #3b82f6;
+  --color-terminal-text-secondary: #2563eb;
   --color-terminal-text-muted: #666666;
 
   --color-terminal-border-primary: #1a1a1a;
@@ -20,7 +20,7 @@
   --color-glitch-red: #ff0000;
   --color-glitch-blue: #0000ff;
 
-  --shadow-button-glow-inset: rgba(0, 255, 0, 0.25);
+  --shadow-button-glow-inset: rgba(59, 130, 246, 0.25);
   --shadow-button-glow-combined:
     0 0 20px var(--color-terminal-text-primary), inset 0 0 20px var(--shadow-button-glow-inset);
 }

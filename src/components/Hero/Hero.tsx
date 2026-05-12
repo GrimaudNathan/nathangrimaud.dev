@@ -1,7 +1,7 @@
 import { motion } from 'motion/react';
-import MatrixGrid from '../MatrixGrid/MatrixGrid';
+import { ParticleGalaxy } from '../ui/particle-galaxy';
+import { CursorDrivenParticleTypography } from '../ui/cursor-driven-particle-typography';
 import { ScrollArrowIcon } from '../../assets/ScrollArrowIcon';
-import GlitchText from '../GlitchText/GlitchText';
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion';
 
 export default function Hero() {
@@ -11,51 +11,58 @@ export default function Hero() {
 
   return (
     <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden">
-      <MatrixGrid />
+      <div className="absolute inset-0">
+        <ParticleGalaxy
+          colors={['#3b82f6', '#2563eb', '#ef4444']}
+          particleCount={20000}
+          particleSize={0.025}
+          centerConcentration={0.8}
+          density={0.9}
+          glow={80}
+          spread={4}
+          rotationSpeed={0.0005}
+          enableDrag={false}
+          enableZoom={false}
+          enableTouch={false}
+          mouseInfluence={0.2}
+        />
+      </div>
 
-      <div className="flex flex-col items-center justify-center md:flex-row md:space-x-10">
-        <motion.h1
-          className="font-mono text-6xl font-bold tracking-tight text-white md:text-8xl lg:text-9xl"
-          initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={
-            prefersReducedMotion
-              ? { duration: 0 }
-              : {
-                  duration: 0.3,
-                  delay: 0.3,
-                }
-          }
-        >
-          <GlitchText
-            autoTrigger={!prefersReducedMotion}
-            triggerDelay={300}
-            glitchOptions={{ duration: 400, frameInterval: 30 }}
-          >
-            {firstName}
-          </GlitchText>
-        </motion.h1>
-        <motion.h1
-          className="font-mono text-6xl font-bold tracking-tight text-white md:text-8xl lg:text-9xl"
-          initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={
-            prefersReducedMotion
-              ? { duration: 0 }
-              : {
-                  duration: 0.3,
-                  delay: 0.6,
-                }
-          }
-        >
-          <GlitchText
-            autoTrigger={!prefersReducedMotion}
-            triggerDelay={600}
-            glitchOptions={{ duration: 400, frameInterval: 30 }}
-          >
-            {lastName}
-          </GlitchText>
-        </motion.h1>
+      <div className="relative z-10 flex flex-col items-center justify-center md:flex-row md:space-x-8">
+        {prefersReducedMotion ? (
+          <>
+            <h1 className="font-mono text-6xl font-bold tracking-tight text-white md:text-8xl lg:text-9xl">
+              {firstName}
+            </h1>
+            <h1 className="font-mono text-6xl font-bold tracking-tight text-white md:text-8xl lg:text-9xl">
+              {lastName}
+            </h1>
+          </>
+        ) : (
+          <>
+            <div
+              className="h-[100px] w-[320px] md:h-[140px] md:w-[480px] lg:h-[180px] lg:w-[620px]"
+              >
+              <CursorDrivenParticleTypography
+                text={firstName}
+                fontSize={200}
+                color="#ffffff"
+                className="h-full min-h-0 touch-pan-y"
+              />
+            </div>
+            <div
+              className="h-[100px] w-[320px] md:h-[140px] md:w-[480px] lg:h-[180px] lg:w-[620px]"
+          
+            >
+              <CursorDrivenParticleTypography
+                text={lastName}
+                fontSize={200}
+                color="#ffffff"
+                className="h-full min-h-0 touch-pan-y"
+              />
+            </div>
+          </>
+        )}
       </div>
 
       <motion.div
@@ -67,7 +74,7 @@ export default function Hero() {
             ? { duration: 0 }
             : {
                 duration: 0.5,
-                delay: 1.2,
+                delay: 0.7,
                 ease: 'easeOut',
               }
         }
@@ -87,7 +94,7 @@ export default function Hero() {
                   ? { duration: 0 }
                   : {
                       duration: 0.5,
-                      delay: 1,
+                      delay: 0.5,
                       ease: 'easeOut',
                     }
               }
@@ -104,7 +111,7 @@ export default function Hero() {
                   ? { duration: 0 }
                   : {
                       duration: 0.5,
-                      delay: 1,
+                      delay: 0.5,
                       ease: 'easeOut',
                     }
               }
