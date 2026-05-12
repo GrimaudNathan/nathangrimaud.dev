@@ -79,7 +79,7 @@ export function DesignSystem() {
           <div className="space-y-4">
             <h2 className="text-terminal-text-muted text-xl">States</h2>
             <div className="flex flex-wrap gap-4">
-              <Button onClick={() => console.log('Clicked!')}>Clickable</Button>
+              <Button>Clickable</Button>
               <Button disabled>Disabled</Button>
             </div>
           </div>

@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { memo, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import frameSvg from '../../assets/frame.svg';
 
@@ -17,7 +17,7 @@ type AnimatedLogoProps = {
   isMobile?: boolean;
 };
 
-export function AnimatedLogo({ logo, isMobile = false }: AnimatedLogoProps) {
+function AnimatedLogoImpl({ logo, isMobile = false }: AnimatedLogoProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -60,3 +60,5 @@ export function AnimatedLogo({ logo, isMobile = false }: AnimatedLogoProps) {
     </motion.div>
   );
 }
+
+export const AnimatedLogo = memo(AnimatedLogoImpl);

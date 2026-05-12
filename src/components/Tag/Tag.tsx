@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { motion } from 'motion/react';
 
 interface TagProps {
@@ -5,7 +6,7 @@ interface TagProps {
   className?: string;
 }
 
-export default function Tag({ children, className = '' }: TagProps) {
+function Tag({ children, className = '' }: TagProps) {
   return (
     <motion.span
       className={`bg-terminal-text-primary text-terminal-bg-primary inline-flex items-center rounded-full px-3 py-1 font-mono text-xs font-semibold ${className}`}
@@ -17,3 +18,5 @@ export default function Tag({ children, className = '' }: TagProps) {
     </motion.span>
   );
 }
+
+export default memo(Tag);

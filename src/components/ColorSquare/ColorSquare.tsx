@@ -1,9 +1,11 @@
+import { memo } from 'react';
+
 interface ColorSquareProps {
   colorClass: string;
   label: string;
 }
 
-export default function ColorSquare({ colorClass, label }: ColorSquareProps) {
+function ColorSquare({ colorClass, label }: ColorSquareProps) {
   return (
     <div className="space-y-2">
       <div
@@ -13,3 +15,5 @@ export default function ColorSquare({ colorClass, label }: ColorSquareProps) {
     </div>
   );
 }
+
+export default memo(ColorSquare);

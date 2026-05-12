@@ -1,11 +1,11 @@
-import { useRef } from 'react';
+import { memo, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
 
 interface SkillItemProps {
   skill: string;
 }
 
-export function SkillItem({ skill }: SkillItemProps) {
+function SkillItemImpl({ skill }: SkillItemProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -27,3 +27,5 @@ export function SkillItem({ skill }: SkillItemProps) {
     </motion.div>
   );
 }
+
+export const SkillItem = memo(SkillItemImpl);
