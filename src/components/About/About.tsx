@@ -26,7 +26,7 @@ export default function About() {
       id: 'line-3',
       content: (
         <Fragment>
-          Spécialisé en <span className="text-terminal-text-secondary text-shadow-lg">React</span>,{' '}
+          Spécialisé en <span className="text-terminal-text-secondary">React</span>,{' '}
           <span className="text-terminal-text-secondary">Vue</span> et{' '}
           <span className="text-terminal-text-secondary">TypeScript</span>
           ,
