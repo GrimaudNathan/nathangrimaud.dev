@@ -48,7 +48,7 @@ export default function About() {
   return (
     <section ref={containerRef} className="relative h-[350vh]">
       <div className="bg-terminal-bg-white sticky top-0 flex min-h-screen items-center justify-center rounded-t-4xl text-black">
-        <div className="mx-auto max-w-4xl px-6 py-20">
+        <div className="mx-auto max-w-4xl px-6 py-6 md:py-20">
           <div className="space-y-2">
             {lines.map((line, index) => (
               <AnimatedLine
