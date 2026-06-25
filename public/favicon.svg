@@ -3,7 +3,7 @@
   <rect width="32" height="32" fill="#3b82f6" rx="4"/>
   <!-- Bordure bleu secondary -->
   <rect x="2" y="2" width="28" height="28" stroke="#2563eb" stroke-width="2" fill="none" rx="2"/>
-  <!-- Accents rouges (glitch) -->
-  <rect x="8" y="12" width="16" height="2" fill="#dc2626" opacity="0.6"/>
-  <rect x="8" y="18" width="12" height="2" fill="#dc2626" opacity="0.6"/>
+  <!-- Accents blancs (glitch) -->
+  <rect x="8" y="12" width="16" height="2" fill="#ffffff" opacity="0.6"/>
+  <rect x="8" y="18" width="12" height="2" fill="#ffffff" opacity="0.6"/>
 </svg>
