@@ -11,7 +11,7 @@ function ColorSquare({ colorClass, label }: ColorSquareProps) {
       <div
         className={`h-20 w-20 ${colorClass} border-terminal-text-primary rounded border-2`}
       ></div>
-      <p className="text-terminal-text-muted text-xs">{label}</p>
+      <p className="text-terminal-text-subtle text-xs">{label}</p>
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import { motion } from 'motion/react';
-import { GithubCalendar } from '../ui/github-calendar';
 import GlitchText from '../GlitchText/GlitchText';
 import Button from '../Button/Button';
+import Link from '../Link/Link';
 import { LinkedInIcon } from '../../assets/LinkedInIcon';
 import { GitHubIcon } from '../../assets/GitHubIcon';
 import { EmailIcon } from '../../assets/EmailIcon';
@@ -17,7 +17,7 @@ export default function Footer() {
   const prefersReducedMotion = usePrefersReducedMotion();
 
   return (
-    <footer className="bg-terminal-bg-primary border-terminal-border-primary border-t-2">
+    <footer id="contact" className="bg-terminal-bg-primary border-terminal-border-primary scroll-mt-24 border-t-2">
       <div className="mx-auto max-w-6xl px-6 py-12 md:py-16">
         <div className="mb-12 text-left">
           <motion.h2
@@ -51,7 +51,7 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.5, delay: 0.1 }}
           >
-            <h3 className="text-terminal-text-muted mb-6 font-mono text-lg font-bold tracking-wider uppercase">
+            <h3 className="text-terminal-text-subtle mb-6 font-mono text-lg font-bold tracking-wider uppercase">
               Contact
             </h3>
             <div className="flex flex-col gap-4">
@@ -73,7 +73,7 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.5, delay: 0.2 }}
           >
-            <h3 className="text-terminal-text-muted mb-6 font-mono text-lg font-bold tracking-wider uppercase">
+            <h3 className="text-terminal-text-subtle mb-6 font-mono text-lg font-bold tracking-wider uppercase">
               Disponibilité
             </h3>
             <p className="text-terminal-text-primary mb-6 font-mono text-sm leading-relaxed">
@@ -91,36 +91,25 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.5, delay: 0.3 }}
           >
-            <h3 className="text-terminal-text-muted mb-6 font-mono text-lg font-bold tracking-wider uppercase">
+            <h3 className="text-terminal-text-subtle mb-6 font-mono text-lg font-bold tracking-wider uppercase">
               Navigation
             </h3>
-            <div className="flex flex-col gap-3">
-              <a
-                href="/design-system"
-                className="text-terminal-text-primary hover:text-terminal-text-secondary font-mono text-sm tracking-wider uppercase transition-colors"
-              >
-                Design System
-              </a>
+            <div className="flex flex-col items-start gap-1">
+              <Link href="#a-propos" variant="underline" className="inline-flex min-h-11 items-center">
+                À propos
+              </Link>
+              <Link href="#competences" variant="underline" className="inline-flex min-h-11 items-center">
+                Compétences
+              </Link>
+              <Link href="#experiences" variant="underline" className="inline-flex min-h-11 items-center">
+                Expériences
+              </Link>
+              <Link href="/design-system" variant="underline" className="inline-flex min-h-11 items-center">
+                Design system
+              </Link>
             </div>
           </motion.div>
         </div>
-
-        <motion.div
-          className="mb-12 overflow-x-auto"
-          initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.5, delay: 0.35 }}
-        >
-          <h3 className="text-terminal-text-muted mb-4 font-mono text-lg font-bold tracking-wider uppercase">
-            Activité GitHub
-          </h3>
-          <GithubCalendar
-            username="GrimaudNathan"
-            monthsToShow={6}
-            className="[&_svg]:text-terminal-text-secondary"
-          />
-        </motion.div>
 
         <motion.div
           className="border-terminal-border-primary border-t pt-8"

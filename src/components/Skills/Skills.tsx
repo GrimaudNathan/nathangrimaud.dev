@@ -6,6 +6,7 @@ import typescriptLogo from '../../assets/typescript.png';
 import vueLogo from '../../assets/vue.png';
 import { AnimatedLogo, type Logo } from './AnimatedLogo';
 import { SkillItem } from './SkillItem';
+import { useMediaQuery } from '../../hooks/useMediaQuery';
 
 const logos: Logo[] = [
   { src: gitLogo, alt: 'Git', side: 'left', top: '10%', left: '5%', rotation: -8 },
@@ -35,25 +36,37 @@ const skills = [
 ];
 
 export default function Skills() {
+  const isDesktop = useMediaQuery('(min-width: 768px)');
+
   return (
-    <section className="bg-terminal-bg-white relative overflow-hidden py-20">
-      <h1 className="text-center font-mono text-5xl font-bold tracking-tight text-black md:text-6xl lg:text-7xl xl:text-8xl">
+    <section
+      id="competences"
+      aria-labelledby="competences-titre"
+      className="bg-terminal-bg-white relative scroll-mt-24 overflow-hidden py-20"
+    >
+      <h2
+        id="competences-titre"
+        className="px-6 text-center font-mono text-5xl font-bold tracking-tight text-balance text-black md:text-6xl lg:text-7xl xl:text-8xl"
+      >
         4 ANS DE DÉVELOPPEMENT
-      </h1>
+      </h2>
       <div className="relative mt-16 flex flex-col items-center justify-center gap-2">
-        <div className="hidden md:block">
-          {logos.map((logo) => (
-            <AnimatedLogo key={logo.alt} logo={logo} isMobile={false} />
+        {isDesktop &&
+          logos.map((logo) => <AnimatedLogo key={logo.alt} logo={logo} isMobile={false} />)}
+        <ul className="flex list-none flex-col items-center gap-2">
+          {skills.map((skill) => (
+            <li key={skill}>
+              <SkillItem skill={skill} />
+            </li>
           ))}
-        </div>
-        {skills.map((skill) => (
-          <SkillItem key={skill} skill={skill} />
-        ))}
-        <div className="mt-12 grid grid-cols-3 gap-4 md:hidden">
-          {logos.map((logo) => (
-            <AnimatedLogo key={`mobile-${logo.alt}`} logo={logo} isMobile={true} />
-          ))}
-        </div>
+        </ul>
+        {!isDesktop && (
+          <div className="mt-12 grid grid-cols-3 gap-4 px-6">
+            {logos.map((logo) => (
+              <AnimatedLogo key={`mobile-${logo.alt}`} logo={logo} isMobile={true} />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

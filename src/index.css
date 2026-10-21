@@ -12,6 +12,7 @@
   --color-terminal-text-primary: #3b82f6;
   --color-terminal-text-secondary: #2563eb;
   --color-terminal-text-muted: #666666;
+  --color-terminal-text-subtle: #94a3b8;
 
   --color-terminal-border-primary: #1a1a1a;
   --color-terminal-border-secondary: #2a2a2a;
@@ -27,13 +28,49 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
     @apply font-sans;
   }
 
   body {
     @apply font-mono antialiased bg-background text-foreground;
     font-family: 'Courier New', 'Monaco', 'Menlo', monospace;
-    font-display: swap;
+  }
+
+  ::selection {
+    background: var(--color-terminal-text-primary);
+    color: var(--color-terminal-bg-primary);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-terminal-text-primary);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  .skip-link {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 60;
+    transform: translateY(-200%);
+    background: var(--color-terminal-text-primary);
+    color: var(--color-terminal-bg-primary);
+    font-family: 'Courier New', Monaco, Menlo, monospace;
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.75rem 1rem;
+  }
+
+  .skip-link:focus {
+    transform: none;
   }
 
   body::-webkit-scrollbar {
@@ -54,7 +91,7 @@
     box-shadow: 0 0 10px var(--color-terminal-text-primary);
   }
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border;
   }
 }
 

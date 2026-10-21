@@ -127,7 +127,7 @@ export function CursorDrivenParticleTypography({
         const ctx = canvas.getContext("2d", { willReadFrequently: true });
         if (!ctx) return;
 
-        let animationFrameId: number;
+        let animationFrameId = 0;
         let particles: Particle[] = [];
 
         let mouseX = -1000;
@@ -196,7 +196,14 @@ export function CursorDrivenParticleTypography({
             }
         };
 
+        let inView = true;
+
         const animate = () => {
+            if (!inView || document.hidden) {
+                animationFrameId = 0;
+                return;
+            }
+
             ctx.clearRect(0, 0, containerWidth, containerHeight);
 
             particles.forEach((particle) => {
@@ -221,6 +228,43 @@ export function CursorDrivenParticleTypography({
             init();
         };
 
+        const handleTouchStart = (event: TouchEvent) => {
+            if (!event.touches[0]) return;
+            const rect = canvas.getBoundingClientRect();
+            mouseX = event.touches[0].clientX - rect.left;
+            mouseY = event.touches[0].clientY - rect.top;
+        };
+
+        const handleTouchMove = (event: TouchEvent) => {
+            if (!event.touches[0]) return;
+            const rect = canvas.getBoundingClientRect();
+            mouseX = event.touches[0].clientX - rect.left;
+            mouseY = event.touches[0].clientY - rect.top;
+        };
+
+        const handleTouchEnd = () => {
+            handleMouseLeave();
+        };
+
+        const resume = () => {
+            if (!inView || document.hidden || animationFrameId) return;
+            animationFrameId = requestAnimationFrame(animate);
+        };
+
+        const observer = new IntersectionObserver(([entry]) => {
+            inView = entry.isIntersecting;
+            if (inView) resume();
+        });
+
+        const onVisibility = () => {
+            if (document.hidden) {
+                if (animationFrameId) cancelAnimationFrame(animationFrameId);
+                animationFrameId = 0;
+                return;
+            }
+            resume();
+        };
+
         // Initialize with a short delay to ensure fonts/layout are ready
         const timeoutId = setTimeout(() => {
             init();
@@ -233,6 +277,7 @@ export function CursorDrivenParticleTypography({
 
         if (containerRef.current) {
             resizeObserver.observe(containerRef.current);
+            observer.observe(containerRef.current);
         }
 
         // Re-initialize particles when the theme changes (detects class changes on html tag)
@@ -246,26 +291,22 @@ export function CursorDrivenParticleTypography({
 
         canvas.addEventListener("mousemove", handleMouseMove);
         canvas.addEventListener("mouseleave", handleMouseLeave);
-        canvas.addEventListener("touchstart", (e) => {
-            if (!e.touches[0]) return;
-            const rect = canvas.getBoundingClientRect();
-            mouseX = e.touches[0].clientX - rect.left;
-            mouseY = e.touches[0].clientY - rect.top;
-        });
-        canvas.addEventListener("touchmove", (e) => {
-            if (!e.touches[0]) return;
-            const rect = canvas.getBoundingClientRect();
-            mouseX = e.touches[0].clientX - rect.left;
-            mouseY = e.touches[0].clientY - rect.top;
-        });
-        canvas.addEventListener("touchend", handleMouseLeave);
+        canvas.addEventListener("touchstart", handleTouchStart);
+        canvas.addEventListener("touchmove", handleTouchMove);
+        canvas.addEventListener("touchend", handleTouchEnd);
+        document.addEventListener("visibilitychange", onVisibility);
 
         return () => {
             clearTimeout(timeoutId);
             resizeObserver.disconnect();
+            observer.disconnect();
             themeObserver.disconnect();
             canvas.removeEventListener("mousemove", handleMouseMove);
             canvas.removeEventListener("mouseleave", handleMouseLeave);
+            canvas.removeEventListener("touchstart", handleTouchStart);
+            canvas.removeEventListener("touchmove", handleTouchMove);
+            canvas.removeEventListener("touchend", handleTouchEnd);
+            document.removeEventListener("visibilitychange", onVisibility);
             cancelAnimationFrame(animationFrameId);
         };
     }, [text, fontSize, fontFamily, particleSize, particleDensity, dispersionStrength, returnSpeed, color]);
@@ -273,7 +314,8 @@ export function CursorDrivenParticleTypography({
     return (
         <div
             ref={containerRef}
-            className={cn("w-full h-full min-h-[400px] flex items-center justify-center relative touch-none", className)}
+            className={cn("relative flex h-full min-h-0 w-full touch-pan-y items-center justify-center", className)}
+            aria-hidden="true"
         >
             <canvas
                 ref={canvasRef}

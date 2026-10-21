@@ -4,17 +4,19 @@ import GlitchText from '../components/GlitchText/GlitchText';
 import Tag from '../components/Tag/Tag';
 import Disclosure from '../components/Disclosure/Disclosure';
 import ColorSquare from '../components/ColorSquare/ColorSquare';
-import { GithubCalendar } from '../components/ui/github-calendar';
 import { LinkedInIcon } from '../assets/LinkedInIcon';
 import { GitHubIcon } from '../assets/GitHubIcon';
 import { EmailIcon } from '../assets/EmailIcon';
+import { useDocumentTitle } from '../hooks/useDocumentTitle';
 
 export function DesignSystem() {
+  useDocumentTitle('Design system | Nathan Grimaud');
+
   return (
     <div className="bg-terminal-bg-secondary min-h-screen">
-      <div className="mx-auto max-w-4xl space-y-8 p-12">
-        <div className="flex items-center justify-between space-y-4">
-          <h1 className="text-terminal-text-primary mt-10 font-mono text-4xl font-bold">
+      <div className="mx-auto max-w-4xl space-y-8 px-6 pt-24 pb-16 md:px-12 md:pt-28">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <h1 className="text-terminal-text-primary font-mono text-4xl font-bold">
             DESIGN SYSTEM
           </h1>
           <Link href="/" variant="secondary">
@@ -28,7 +30,7 @@ export function DesignSystem() {
 
             <div className="space-y-6">
               <div>
-                <h3 className="text-terminal-text-muted mb-3 text-sm">Background Colors</h3>
+                <h3 className="text-terminal-text-subtle mb-3 text-sm">Background Colors</h3>
                 <div className="flex flex-wrap gap-4">
                   <ColorSquare colorClass="bg-terminal-bg-primary" label="bg-primary" />
                   <ColorSquare colorClass="bg-terminal-bg-secondary" label="bg-secondary" />
@@ -37,7 +39,7 @@ export function DesignSystem() {
               </div>
 
               <div>
-                <h3 className="text-terminal-text-muted mb-3 text-sm">Text Colors</h3>
+                <h3 className="text-terminal-text-subtle mb-3 text-sm">Text Colors</h3>
                 <div className="flex flex-wrap gap-4">
                   <ColorSquare colorClass="bg-terminal-text-primary" label="text-primary" />
                   <ColorSquare colorClass="bg-terminal-text-secondary" label="text-secondary" />
@@ -46,7 +48,7 @@ export function DesignSystem() {
               </div>
 
               <div>
-                <h3 className="text-terminal-text-muted mb-3 text-sm">Border Colors</h3>
+                <h3 className="text-terminal-text-subtle mb-3 text-sm">Border Colors</h3>
                 <div className="flex flex-wrap gap-4">
                   <ColorSquare colorClass="bg-terminal-border-primary" label="border-primary" />
                   <ColorSquare colorClass="bg-terminal-border-secondary" label="border-secondary" />
@@ -59,7 +61,7 @@ export function DesignSystem() {
         <div className="border-terminal-border-secondary space-y-6 rounded border-2 p-8">
           <div className="space-y-4">
             <h2 className="text-terminal-text-primary text-xl">Button Component</h2>
-            <h2 className="text-terminal-text-muted text-xl">Variants</h2>
+            <h3 className="text-terminal-text-subtle text-xl">Variants</h3>
             <div className="flex flex-wrap gap-4">
               <Button variant="primary">Primary</Button>
               <Button variant="secondary">Secondary</Button>
@@ -68,7 +70,7 @@ export function DesignSystem() {
           </div>
 
           <div className="space-y-4">
-            <h2 className="text-terminal-text-muted text-xl">Sizes</h2>
+            <h3 className="text-terminal-text-subtle text-xl">Sizes</h3>
             <div className="flex flex-wrap items-center gap-4">
               <Button size="sm">Small</Button>
               <Button size="md">Medium</Button>
@@ -77,7 +79,7 @@ export function DesignSystem() {
           </div>
 
           <div className="space-y-4">
-            <h2 className="text-terminal-text-muted text-xl">States</h2>
+            <h3 className="text-terminal-text-subtle text-xl">States</h3>
             <div className="flex flex-wrap gap-4">
               <Button>Clickable</Button>
               <Button disabled>Disabled</Button>
@@ -85,7 +87,7 @@ export function DesignSystem() {
           </div>
 
           <div className="space-y-4">
-            <h2 className="text-terminal-text-muted text-xl">With Icons</h2>
+            <h3 className="text-terminal-text-subtle text-xl">With Icons</h3>
             <div className="flex flex-col gap-4">
               <Button icon={<EmailIcon />} variant="primary">
                 Email
@@ -104,7 +106,7 @@ export function DesignSystem() {
           <div className="space-y-4">
             <h2 className="text-terminal-text-primary text-xl">Link Component</h2>
             <div className="space-y-4">
-              <h2 className="text-terminal-text-muted text-xl">Variants</h2>
+              <h3 className="text-terminal-text-subtle text-xl">Variants</h3>
               <div className="flex gap-4">
                 <Link href="/" variant="primary">
                   Primary Link
@@ -116,7 +118,7 @@ export function DesignSystem() {
                   Underline Link
                 </Link>
               </div>
-              <h2 className="text-terminal-text-muted text-xl">External</h2>
+              <h3 className="text-terminal-text-subtle text-xl">External</h3>
               <div className="flex gap-4">
                 <Link href="/" variant="primary">
                   Not External Link
@@ -133,7 +135,7 @@ export function DesignSystem() {
           <div className="space-y-4">
             <h2 className="text-terminal-text-primary text-xl">GlitchText Component</h2>
             <div className="space-y-4">
-              <h2 className="text-terminal-text-muted text-xl">Auto Trigger</h2>
+              <h3 className="text-terminal-text-subtle text-xl">Auto Trigger</h3>
               <div className="flex flex-wrap items-center gap-4">
                 <GlitchText className="text-terminal-text-secondary" autoTrigger triggerDelay={0} glitchOptions={{ duration: 600 }}>
                   Auto Trigger
@@ -142,7 +144,7 @@ export function DesignSystem() {
                   Delayed Trigger
                 </GlitchText>
               </div>
-              <h2 className="text-terminal-text-muted text-xl">Custom Options</h2>
+              <h3 className="text-terminal-text-subtle text-xl">Custom Options</h3>
               <div className="flex flex-wrap items-center gap-4">
                 <GlitchText className="text-terminal-text-secondary" glitchOptions={{ duration: 150, frameInterval: 20 }}>
                   Fast Glitch
@@ -159,7 +161,7 @@ export function DesignSystem() {
           <div className="space-y-4">
             <h2 className="text-terminal-text-primary text-xl">Tag Component</h2>
             <div className="space-y-4">
-              <h2 className="text-terminal-text-muted text-xl">Basic Tags</h2>
+              <h3 className="text-terminal-text-subtle text-xl">Basic Tags</h3>
               <div className="flex flex-wrap items-center gap-3">
                 <Tag>React</Tag>
                 <Tag>TypeScript</Tag>
@@ -171,34 +173,10 @@ export function DesignSystem() {
         </div>
 
         <div className="border-terminal-border-secondary space-y-6 rounded border-2 p-8">
-          <div className="space-y-8">
-            <h2 className="text-terminal-text-primary text-xl">Github Calendar</h2>
-
-            <div className="space-y-3">
-              <h3 className="text-terminal-text-muted text-xl">
-                6 months
-              </h3>
-              <div className="overflow-x-auto rounded-xl border border-terminal-border-primary bg-terminal-bg-primary p-4 md:p-6">
-                <GithubCalendar username="GrimaudNathan" monthsToShow={6} />
-              </div>
-            </div>
-
-            <div className="space-y-3">
-              <h3 className="text-terminal-text-muted text-xl">
-                Circle cells and 3 months
-              </h3>
-              <div className="overflow-x-auto rounded-xl border border-terminal-border-primary bg-terminal-bg-primary p-4 md:p-6">
-                <GithubCalendar username="GrimaudNathan" monthsToShow={3} shape="circle" />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="border-terminal-border-secondary space-y-6 rounded border-2 p-8">
           <div className="space-y-4">
             <h2 className="text-terminal-text-primary text-xl">Disclosure Component</h2>
             <div className="space-y-4">
-              <h2 className="text-terminal-text-muted text-xl">With Skills</h2>
+              <h3 className="text-terminal-text-subtle text-xl">With Skills</h3>
               <Disclosure
                 title="Senior Frontend Developer"
                 year="2023-2024"
@@ -207,7 +185,7 @@ export function DesignSystem() {
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
                 incididunt ut labore et dolore magna aliqua.
               </Disclosure>
-              <h2 className="text-terminal-text-muted text-xl">Without Skills</h2>
+              <h3 className="text-terminal-text-subtle text-xl">Without Skills</h3>
               <Disclosure title="Frontend Developer" year="2021-2023">
                 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
                 ex ea commodo consequat.

@@ -1,5 +1,6 @@
 import { memo, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
+import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion';
 
 interface SkillItemProps {
   skill: string;
@@ -7,6 +8,7 @@ interface SkillItemProps {
 
 function SkillItemImpl({ skill }: SkillItemProps) {
   const ref = useRef<HTMLDivElement>(null);
+  const prefersReducedMotion = usePrefersReducedMotion();
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -20,7 +22,7 @@ function SkillItemImpl({ skill }: SkillItemProps) {
   return (
     <motion.div
       ref={ref}
-      style={{ scale, opacity }}
+      style={prefersReducedMotion ? undefined : { scale, opacity }}
       className="font-mono text-3xl font-bold text-black md:text-4xl lg:text-5xl xl:text-6xl"
     >
       {skill}

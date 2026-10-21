@@ -3,6 +3,7 @@ import { useEffect, useImperativeHandle } from 'react';
 import type { Ref } from 'react';
 import { useGlitch } from '../../hooks/useGlitch';
 import type { UseGlitchOptions } from '../../hooks/useGlitch';
+import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion';
 
 export interface GlitchTextRef {
   startGlitch: () => void;
@@ -32,7 +33,11 @@ export default function GlitchText({
   triggerDelay = 0,
   ref,
 }: GlitchTextProps) {
-  const { glitchText, isGlitching, startGlitch, stopGlitch } = useGlitch(children, glitchOptions);
+  const prefersReducedMotion = usePrefersReducedMotion();
+  const { glitchText, isGlitching, startGlitch, stopGlitch } = useGlitch(children, {
+    ...glitchOptions,
+    disabled: glitchOptions.disabled || prefersReducedMotion,
+  });
 
   useImperativeHandle(ref, () => ({
     startGlitch,
@@ -40,7 +45,7 @@ export default function GlitchText({
   }));
 
   useEffect(() => {
-    if (autoTrigger) {
+    if (autoTrigger && !prefersReducedMotion) {
       const timer = setTimeout(() => {
         startGlitch();
       }, triggerDelay);
@@ -54,7 +59,7 @@ export default function GlitchText({
         clearInterval(interval);
       };
     }
-  }, [autoTrigger, triggerDelay, startGlitch]);
+  }, [autoTrigger, triggerDelay, startGlitch, prefersReducedMotion]);
 
   const handleMouseEnter = () => {
     startGlitch();
@@ -72,10 +77,14 @@ export default function GlitchText({
       onMouseLeave={handleMouseLeave}
       className="relative inline-block"
     >
-      <span className={`relative z-10 block ${className}`}>{glitchText}</span>
+      <span className="sr-only">{children}</span>
+      <span aria-hidden="true" className={`relative z-10 block ${className}`}>
+        {glitchText}
+      </span>
       {isGlitching && (
         <>
           <motion.span
+            aria-hidden="true"
             className="text-glitch-red pointer-events-none absolute inset-0 z-0 flex items-center justify-center"
             style={{
               textShadow: '2px 0 var(--color-glitch-red), -2px 0 var(--color-glitch-blue)',
@@ -92,6 +101,7 @@ export default function GlitchText({
             {glitchText}
           </motion.span>
           <motion.span
+            aria-hidden="true"
             className="text-glitch-blue pointer-events-none absolute inset-0 z-0 flex items-center justify-center"
             style={{
               textShadow: '-2px 0 var(--color-glitch-blue), 2px 0 var(--color-glitch-red)',

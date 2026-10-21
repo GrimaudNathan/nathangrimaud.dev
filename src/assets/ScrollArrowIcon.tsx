@@ -1,21 +1,20 @@
 import { motion } from 'motion/react';
 
-export function ScrollArrowIcon() {
+export function ScrollArrowIcon({ animate = true }: { animate?: boolean }) {
   return (
     <motion.svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 7 7"
       width="20"
       height="20"
+      aria-hidden="true"
       className="block select-none"
-      animate={{
-        y: [0, 8, 0],
-      }}
-      transition={{
-        duration: 2,
-        repeat: Infinity,
-        ease: 'easeInOut',
-      }}
+      animate={animate ? { y: [0, 8, 0] } : { y: 0 }}
+      transition={
+        animate
+          ? { duration: 2, repeat: Infinity, ease: 'easeInOut' }
+          : { duration: 0 }
+      }
     >
       <path
         fill="rgb(255,255,255)"

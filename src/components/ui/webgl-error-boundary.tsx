@@ -42,7 +42,7 @@ interface WebGLFallbackProps {
 
 export function WebGLFallback({
   className,
-  message = "Interactive WebGL content is unavailable on this device/browser.",
+  message = "L'animation n'est pas disponible sur cet appareil.",
 }: WebGLFallbackProps) {
   return (
     <div

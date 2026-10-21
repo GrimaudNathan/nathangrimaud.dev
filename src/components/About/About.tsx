@@ -1,35 +1,34 @@
 import { useScroll } from 'motion/react';
 import { useRef, Fragment } from 'react';
 import { AnimatedLine } from './AnimatedLine';
+import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion';
 
 export default function About() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const prefersReducedMotion = usePrefersReducedMotion();
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start start', 'end start'],
   });
 
   const lines = [
-  
     {
       id: 'line-1',
       content: (
         <Fragment>
-          Je suis ingénieur{' '}
-          <span className="text-terminal-text-secondary">front-end</span>{' '}
+          Je suis ingénieur <span className="text-terminal-text-secondary">front-end</span>{' '}
           actuellement en recherche
         </Fragment>
       ),
     },
-    { id: 'line-2', content: "d’une nouvelle opportunité." },
+    { id: 'line-2', content: 'd’une nouvelle opportunité.' },
     {
       id: 'line-3',
       content: (
         <Fragment>
           Spécialisé en <span className="text-terminal-text-secondary">React</span>,{' '}
           <span className="text-terminal-text-secondary">Vue</span> et{' '}
-          <span className="text-terminal-text-secondary">TypeScript</span>
-          ,
+          <span className="text-terminal-text-secondary">TypeScript</span>,
         </Fragment>
       ),
     },
@@ -38,7 +37,8 @@ export default function About() {
       id: 'line-5',
       content: (
         <Fragment>
-          Attentif à la qualité du <span className="text-terminal-text-secondary">code</span> et à la cohérence visuelle,
+          Attentif à la qualité du <span className="text-terminal-text-secondary">code</span> et à
+          la cohérence visuelle,
         </Fragment>
       ),
     },
@@ -46,8 +46,22 @@ export default function About() {
   ];
 
   return (
-    <section ref={containerRef} className="relative h-[350vh]">
-      <div className="bg-terminal-bg-white sticky top-0 flex min-h-screen items-center justify-center rounded-t-4xl text-black">
+    <section
+      id="a-propos"
+      ref={containerRef}
+      aria-labelledby="a-propos-titre"
+      className={prefersReducedMotion ? 'relative scroll-mt-24' : 'relative h-[220vh] scroll-mt-24'}
+    >
+      <h2 id="a-propos-titre" className="sr-only">
+        À propos
+      </h2>
+      <div
+        className={
+          prefersReducedMotion
+            ? 'bg-terminal-bg-white flex items-center justify-center rounded-t-4xl py-24 text-black'
+            : 'bg-terminal-bg-white sticky top-0 flex min-h-screen items-center justify-center rounded-t-4xl text-black'
+        }
+      >
         <div className="mx-auto max-w-4xl px-6 py-6 md:py-20">
           <div className="space-y-2">
             {lines.map((line, index) => (

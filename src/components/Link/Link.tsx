@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { Link as RouterLink } from 'react-router-dom';
 import GlitchText from '../GlitchText/GlitchText';
+import { cn } from '../../lib/utils';
 
 interface LinkProps {
   children: string;
@@ -48,15 +49,19 @@ export default function Link({
   };
 
   const isInternalRoute = href.startsWith('/') && !external;
+  const classes = cn(baseStyles, variantStyles[variant], className);
+  const content = (
+    <>
+      <GlitchText animationDuration={0.3}>{children}</GlitchText>
+      {external ? <span className="sr-only"> (s'ouvre dans un nouvel onglet)</span> : null}
+    </>
+  );
 
   if (isInternalRoute) {
     return (
       <motion.div className="inline-block">
-        <RouterLink
-          to={href}
-          className={`${baseStyles} ${variantStyles[variant]} ${className}`}
-        >
-          <GlitchText animationDuration={0.3}>{children}</GlitchText>
+        <RouterLink to={href} className={classes}>
+          {content}
         </RouterLink>
       </motion.div>
     );
@@ -67,9 +72,9 @@ export default function Link({
       href={href}
       target={external ? '_blank' : undefined}
       rel={external ? 'noopener noreferrer' : undefined}
-      className={`${baseStyles} ${variantStyles[variant]} ${className}`}
+      className={classes}
     >
-      <GlitchText animationDuration={0.3}>{children}</GlitchText>
+      {content}
     </motion.a>
   );
 }

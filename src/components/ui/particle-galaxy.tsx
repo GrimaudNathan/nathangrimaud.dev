@@ -408,7 +408,12 @@ export function ParticleGalaxy({
 
             // Animation
             const clock = new THREE.Clock()
+            let inView = true
             const animate = () => {
+            if (!inView || document.hidden) {
+                frameRef.current = undefined
+                return
+            }
             const elapsedTime = clock.getElapsedTime()
 
             // Update material uniforms
@@ -460,6 +465,27 @@ export function ParticleGalaxy({
             frameRef.current = requestAnimationFrame(animate)
         }
 
+            const resume = () => {
+                if (!inView || document.hidden || frameRef.current) return
+                frameRef.current = requestAnimationFrame(animate)
+            }
+
+            const observer = new IntersectionObserver(([entry]) => {
+                inView = entry.isIntersecting
+                if (inView) resume()
+            })
+            observer.observe(container)
+
+            const onVisibility = () => {
+                if (document.hidden) {
+                    if (frameRef.current) cancelAnimationFrame(frameRef.current)
+                    frameRef.current = undefined
+                    return
+                }
+                resume()
+            }
+            document.addEventListener("visibilitychange", onVisibility)
+
             animate()
 
             // Cleanup
@@ -473,6 +499,8 @@ export function ParticleGalaxy({
             container.removeEventListener("touchstart", handleTouchStart)
             container.removeEventListener("touchmove", handleTouchMove)
             container.removeEventListener("touchend", handleTouchEnd)
+            document.removeEventListener("visibilitychange", onVisibility)
+            observer.disconnect()
             if (frameRef.current) {
                 cancelAnimationFrame(frameRef.current)
             }
@@ -521,7 +549,7 @@ export function ParticleGalaxy({
 
     return (
         <WebGLErrorBoundary fallback={<WebGLFallback className="absolute inset-0 h-full w-full" />}>
-            <div ref={containerRef} className={cn("relative w-full h-full", className)}>
+            <div ref={containerRef} className={cn("relative w-full h-full", className)} aria-hidden="true">
                 <canvas ref={canvasRef} className="w-full h-full" />
             </div>
         </WebGLErrorBoundary>

@@ -28,13 +28,13 @@ const VARIANT_STYLES: Record<ButtonVariant, string> = {
   secondary:
     'bg-transparent text-terminal-text-primary border-terminal-text-primary hover:bg-terminal-text-primary hover:text-terminal-bg-primary hover:shadow-[0_0_20px_var(--color-terminal-text-primary)]',
   outline:
-    'bg-transparent text-terminal-text-secondary border-terminal-border-secondary hover:border-terminal-text-primary hover:text-terminal-text-primary hover:shadow-[0_0_15px_rgba(0,255,0,0.25)]',
+    'bg-transparent text-terminal-text-primary border-terminal-border-secondary hover:border-terminal-text-primary hover:shadow-[0_0_15px_rgba(59,130,246,0.35)]',
 };
 
 const SIZE_STYLES: Record<ButtonSize, string> = {
-  sm: 'px-4 py-2 text-xs',
-  md: 'px-6 py-3 text-sm',
-  lg: 'px-8 py-4 text-base',
+  sm: 'min-h-11 px-4 py-2 text-xs',
+  md: 'min-h-11 px-6 py-3 text-sm',
+  lg: 'min-h-11 px-8 py-4 text-base',
 };
 
 export default function Button({
@@ -76,6 +76,7 @@ export default function Button({
         <GlitchText ref={glitchTextRef} glitchOptions={{ disabled }} animationDuration={0.3}>
           {children}
         </GlitchText>
+        {external ? <span className="sr-only"> (s'ouvre dans un nouvel onglet)</span> : null}
       </span>
     </>
   );

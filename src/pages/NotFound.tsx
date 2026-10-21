@@ -1,28 +1,31 @@
 import Link from '../components/Link/Link';
 import GlitchText from '../components/GlitchText/GlitchText';
+import { useDocumentTitle } from '../hooks/useDocumentTitle';
 
 export function NotFound() {
+  useDocumentTitle('Page non trouvée | Nathan Grimaud');
+
   return (
-    <div className="bg-terminal-bg-primary flex min-h-screen items-center justify-center">
-      <div className="text-center space-y-8 px-4">
+    <div className="bg-terminal-bg-primary flex min-h-screen items-center justify-center px-6">
+      <div className="space-y-8 text-center">
         <div className="space-y-4">
-          <GlitchText 
-            autoTrigger 
-            glitchOptions={{ duration: 800, frameInterval: 30 }}
-            className="font-mono text-9xl font-bold text-terminal-text-primary"
-          >
-            404
-          </GlitchText>
-          <h2 className="font-mono text-2xl text-terminal-text-secondary">
-            Page non trouvée
-          </h2>
-          <p className="text-terminal-text-muted font-mono">
+          <p aria-hidden="true">
+            <GlitchText
+              autoTrigger
+              glitchOptions={{ duration: 800, frameInterval: 30 }}
+              className="text-terminal-text-primary font-mono text-7xl font-bold sm:text-8xl md:text-9xl"
+            >
+              404
+            </GlitchText>
+          </p>
+          <h1 className="font-mono text-2xl text-white">Page non trouvée</h1>
+          <p className="text-terminal-text-subtle font-mono">
             La page que vous recherchez n'existe pas ou a été déplacée.
           </p>
         </div>
-        
-        <div className="flex justify-center gap-4">
-          <Link href="/" variant="primary">
+
+        <div className="flex justify-center">
+          <Link href="/" variant="primary" className="inline-flex min-h-11 items-center">
             ← Retour à l'accueil
           </Link>
         </div>
@@ -30,4 +33,3 @@ export function NotFound() {
     </div>
   );
 }
-

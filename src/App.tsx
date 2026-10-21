@@ -7,12 +7,17 @@ import { NotFound } from './pages/NotFound';
 export default function App() {
   return (
     <>
+      <a className="skip-link" href="#contenu">
+        Aller au contenu
+      </a>
       <Menu />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/design-system" element={<DesignSystem />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <main id="contenu">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/design-system" element={<DesignSystem />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </main>
     </>
   );
 }

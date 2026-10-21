@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useId, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import Tag from '../Tag/Tag';
+import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion';
 
 interface DisclosureProps {
   title: string;
@@ -9,33 +10,29 @@ interface DisclosureProps {
   children: React.ReactNode;
 }
 
-export default function Disclosure({
-  title,
-  year,
-  skills = [],
-  children,
-}: DisclosureProps) {
+export default function Disclosure({ title, year, skills = [], children }: DisclosureProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const prefersReducedMotion = usePrefersReducedMotion();
+  const panelId = useId();
+  const duration = prefersReducedMotion ? 0 : 0.3;
 
   return (
     <div className="border-terminal-border-primary/50 hover:border-terminal-text-primary border bg-white transition-colors duration-200">
       <button
+        type="button"
+        aria-expanded={isOpen}
+        aria-controls={panelId}
         onClick={() => setIsOpen(!isOpen)}
-        className="flex w-full flex-col gap-3 p-4 text-left sm:flex-row sm:items-center sm:gap-4 cursor-pointer"
+        className="flex w-full cursor-pointer flex-col gap-3 p-4 text-left sm:flex-row sm:items-center sm:gap-4"
       >
         <div className="flex min-w-0 flex-1 items-center gap-4">
           <motion.div
             animate={{ rotate: isOpen ? 90 : 0 }}
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            transition={{ duration, ease: 'easeInOut' }}
             className="shrink-0"
+            aria-hidden="true"
           >
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 16 16"
-              fill="none"
-              className="text-terminal-text-primary"
-            >
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="text-terminal-text-primary">
               <path
                 d="M6 4L10 8L6 12"
                 stroke="currentColor"
@@ -66,22 +63,25 @@ export default function Disclosure({
       <AnimatePresence>
         {isOpen && (
           <motion.div
+            id={panelId}
+            role="region"
+            aria-label={title}
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            transition={{ duration, ease: 'easeInOut' }}
             className="overflow-hidden"
           >
             <div className="border-terminal-border-primary/20 border-t px-4 pt-0 pb-4">
-              <motion.p
-                initial={{ opacity: 0, y: -10 }}
+              <motion.div
+                initial={{ opacity: 0, y: prefersReducedMotion ? 0 : -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.3, delay: 0.1 }}
+                exit={{ opacity: 0, y: prefersReducedMotion ? 0 : -10 }}
+                transition={{ duration, delay: prefersReducedMotion ? 0 : 0.1 }}
                 className="pt-4 font-mono text-sm leading-relaxed text-gray-700"
               >
                 {children}
-              </motion.p>
+              </motion.div>
             </div>
           </motion.div>
         )}
