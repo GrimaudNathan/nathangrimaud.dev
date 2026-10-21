@@ -16,9 +16,10 @@ export type Logo = {
 type AnimatedLogoProps = {
   logo: Logo;
   isMobile?: boolean;
+  inline?: boolean;
 };
 
-function AnimatedLogoImpl({ logo, isMobile = false }: AnimatedLogoProps) {
+function AnimatedLogoImpl({ logo, isMobile = false, inline = false }: AnimatedLogoProps) {
   const ref = useRef<HTMLDivElement>(null);
   const prefersReducedMotion = usePrefersReducedMotion();
 
@@ -29,6 +30,26 @@ function AnimatedLogoImpl({ logo, isMobile = false }: AnimatedLogoProps) {
 
   const y = useTransform(scrollYProgress, [0, 1], [0, -30]);
   const rotate = useTransform(scrollYProgress, [0, 1], [logo.rotation, logo.rotation + 25]);
+
+  if (inline) {
+    return (
+      <div className="relative h-16 w-16 md:h-20 md:w-20">
+        <div className="pointer-events-none absolute inset-0 z-10">
+          <img src={frameSvg} alt="" className="h-full w-full" />
+        </div>
+        <div className="absolute inset-0 flex items-center justify-center p-4">
+          <img
+            src={logo.src}
+            alt={logo.alt}
+            className="h-full w-full object-contain"
+            loading="lazy"
+            width="80"
+            height="80"
+          />
+        </div>
+      </div>
+    );
+  }
 
   const positionStyle = isMobile
     ? {}

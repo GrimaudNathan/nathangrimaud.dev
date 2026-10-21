@@ -1,6 +1,7 @@
 import { useId, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import Tag from '../Tag/Tag';
+import GlitchText from '../GlitchText/GlitchText';
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion';
 
 interface DisclosureProps {
@@ -8,13 +9,91 @@ interface DisclosureProps {
   year: string;
   skills?: string[];
   children: React.ReactNode;
+  variant?: 'card' | 'log';
 }
 
-export default function Disclosure({ title, year, skills = [], children }: DisclosureProps) {
+export default function Disclosure({
+  title,
+  year,
+  skills = [],
+  children,
+  variant = 'card',
+}: DisclosureProps) {
   const [isOpen, setIsOpen] = useState(false);
   const prefersReducedMotion = usePrefersReducedMotion();
   const panelId = useId();
   const duration = prefersReducedMotion ? 0 : 0.3;
+
+  if (variant === 'log') {
+    return (
+      <div className="border-b border-black/15">
+        <button
+          type="button"
+          aria-expanded={isOpen}
+          aria-controls={panelId}
+          onClick={() => setIsOpen(!isOpen)}
+          className="flex min-h-14 w-full cursor-pointer items-start gap-4 py-4 text-left"
+        >
+          <motion.span
+            animate={{ rotate: isOpen ? 90 : 0 }}
+            transition={{ duration, ease: 'easeInOut' }}
+            className="mt-1 shrink-0 sm:mt-0"
+            aria-hidden="true"
+          >
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              fill="none"
+              className="text-terminal-text-secondary"
+            >
+              <path
+                d="M6 4L10 8L6 12"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </motion.span>
+          <span className="grid min-w-0 flex-1 gap-x-6 gap-y-1 sm:grid-cols-[7.5rem_1fr] sm:items-baseline">
+            <span className="text-terminal-text-secondary font-mono text-sm font-bold tabular-nums">
+              {year}
+            </span>
+            <span className="min-w-0">
+              <span className="block font-mono text-lg font-bold text-black md:text-xl">
+                <GlitchText animationDuration={0.28}>{title}</GlitchText>
+              </span>
+              {skills.length > 0 && (
+                <span className="text-terminal-text-secondary mt-1 block font-mono text-xs font-bold tracking-wide">
+                  {skills.join(' · ')}
+                </span>
+              )}
+            </span>
+          </span>
+        </button>
+
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              id={panelId}
+              role="region"
+              aria-label={title}
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration, ease: [0.16, 1, 0.3, 1] }}
+              className="overflow-hidden"
+            >
+              <div className="max-w-[68ch] pt-1 pr-2 pb-6 pl-8 font-mono text-sm leading-relaxed text-black sm:pl-[9.5rem]">
+                {children}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    );
+  }
 
   return (
     <div className="border-terminal-border-primary/50 hover:border-terminal-text-primary border bg-white transition-colors duration-200">
@@ -32,7 +111,13 @@ export default function Disclosure({ title, year, skills = [], children }: Discl
             className="shrink-0"
             aria-hidden="true"
           >
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="text-terminal-text-primary">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              fill="none"
+              className="text-terminal-text-primary"
+            >
               <path
                 d="M6 4L10 8L6 12"
                 stroke="currentColor"

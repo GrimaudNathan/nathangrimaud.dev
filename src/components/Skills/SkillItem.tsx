@@ -1,32 +1,18 @@
-import { memo, useRef } from 'react';
-import { motion, useScroll, useTransform } from 'motion/react';
-import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion';
+import { memo } from 'react';
+import GlitchText from '../GlitchText/GlitchText';
 
 interface SkillItemProps {
   skill: string;
 }
 
 function SkillItemImpl({ skill }: SkillItemProps) {
-  const ref = useRef<HTMLDivElement>(null);
-  const prefersReducedMotion = usePrefersReducedMotion();
-
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['start end', 'end start'],
-  });
-
-  const scale = useTransform(scrollYProgress, [0, 0.3, 0.5, 0.7, 1], [0.7, 0.7, 1.1, 0.7, 0.7]);
-
-  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.5, 0.7, 1], [0.7, 0.7, 1, 0.7, 0.7]);
-
   return (
-    <motion.div
-      ref={ref}
-      style={prefersReducedMotion ? undefined : { scale, opacity }}
-      className="font-mono text-3xl font-bold text-black md:text-4xl lg:text-5xl xl:text-6xl"
+    <GlitchText
+      animationDuration={0.28}
+      className="font-mono text-2xl font-bold text-black md:text-3xl lg:text-4xl"
     >
       {skill}
-    </motion.div>
+    </GlitchText>
   );
 }
 

@@ -97,17 +97,17 @@ export default function Experiences() {
     <section
       id="experiences"
       aria-labelledby="experiences-titre"
-      className="bg-terminal-bg-white scroll-mt-24 rounded-b-4xl px-6 py-20"
+      className="bg-terminal-bg-white scroll-mt-24 rounded-b-4xl px-6 pt-24 pb-20"
     >
       <div className="mx-auto max-w-4xl">
         <h2
           id="experiences-titre"
-          className="mb-16 text-center font-mono text-5xl font-bold tracking-tight text-black md:text-6xl lg:text-7xl xl:text-8xl"
+          className="mb-8 font-mono text-[clamp(1.85rem,7vw,6rem)] leading-[0.92] font-bold tracking-[-0.04em] text-balance text-black"
         >
           EXPÉRIENCES
         </h2>
-        <div className="space-y-4">
-          <h3 className="mt-6 mb-2 font-mono text-xl font-semibold tracking-tight text-black">
+        <div>
+          <h3 className="mt-10 mb-2 font-mono text-xl font-bold tracking-tight text-black">
             Expériences Professionnelles
           </h3>
           {professionalExperiences.map((experience) => (
@@ -116,16 +116,22 @@ export default function Experiences() {
               title={experience.title}
               year={experience.year}
               skills={experience.skills}
+              variant="log"
             >
               {experience.description}
             </Disclosure>
           ))}
 
-          <h3 className="mt-8 mb-2 font-mono text-xl font-semibold tracking-tight text-black">
+          <h3 className="mt-12 mb-2 font-mono text-xl font-bold tracking-tight text-black">
             Expériences Académiques
           </h3>
           {academicExperiences.map((experience) => (
-            <Disclosure key={experience.id} title={experience.title} year={experience.year}>
+            <Disclosure
+              key={experience.id}
+              title={experience.title}
+              year={experience.year}
+              variant="log"
+            >
               {experience.description}
             </Disclosure>
           ))}

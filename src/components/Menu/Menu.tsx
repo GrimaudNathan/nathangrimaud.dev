@@ -9,35 +9,41 @@ export default function Menu() {
   return (
     <nav
       aria-label="Contact"
-      className="bg-terminal-bg-primary border-terminal-border-primary fixed top-0 right-0 left-0 z-50 border-b-2"
+      className="bg-terminal-bg-primary border-terminal-border-primary fixed top-0 right-0 left-0 z-50 border-b"
     >
-      <div className="flex items-center justify-between gap-4 px-4 py-2 md:px-6 md:py-3">
-        <Link href={`mailto:${email}`} variant="underline" className={`${linkClass} md:hidden`}>
-          Email
-        </Link>
-        <Link
-          href={`mailto:${email}`}
-          variant="underline"
-          className={`${linkClass} hidden md:inline-flex`}
-        >
-          {email.toUpperCase()}
-        </Link>
-        <Link
-          href={linkedinUrl}
-          variant="underline"
-          external
-          className={`${linkClass} md:hidden`}
-        >
-          LinkedIn
-        </Link>
-        <Link
-          href={linkedinUrl}
-          variant="underline"
-          external
-          className={`${linkClass} hidden md:inline-flex`}
-        >
-          {`LINKEDIN.COM/IN/${linkedinPath}`}
-        </Link>
+      <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-4 py-2 md:px-6 md:py-3">
+        <p className="hidden font-mono text-sm font-bold md:block">
+          <span className="text-white">nathan</span>
+          <span className="text-terminal-text-primary">@grimaud</span>
+        </p>
+        <div className="flex w-full items-center justify-between gap-4 md:w-auto md:justify-end">
+          <Link href={`mailto:${email}`} variant="underline" className={`${linkClass} md:hidden`}>
+            Email
+          </Link>
+          <Link
+            href={`mailto:${email}`}
+            variant="underline"
+            className={`${linkClass} hidden md:inline-flex`}
+          >
+            {email.toUpperCase()}
+          </Link>
+          <Link
+            href={linkedinUrl}
+            variant="underline"
+            external
+            className={`${linkClass} md:hidden`}
+          >
+            LinkedIn
+          </Link>
+          <Link
+            href={linkedinUrl}
+            variant="underline"
+            external
+            className={`${linkClass} hidden md:inline-flex`}
+          >
+            {`LINKEDIN.COM/IN/${linkedinPath}`}
+          </Link>
+        </div>
       </div>
     </nav>
   );
