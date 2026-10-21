@@ -111,13 +111,13 @@ export default function Hero() {
               ))}
             </ul>
           </div>
-          <div className="mt-6 flex justify-start md:mt-8">
+          <div className="mx-auto mt-6 flex w-full max-w-6xl justify-start md:mt-8">
             <button
               type="button"
               onClick={scrollToAbout}
               aria-label="Aller à la section suivante"
               tabIndex={boot.ready ? 0 : -1}
-              className="flex h-11 w-11 items-center justify-center"
+              className="flex items-center justify-center cursor-pointer"
             >
               <ScrollArrowIcon animate={boot.ready && !prefersReducedMotion} />
             </button>
